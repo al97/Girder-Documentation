@@ -40,12 +40,12 @@ def recurseGetItems(client, folderID, parentType='folder'):
     return items
 ```
 
-Result: does nothing, copy and pasted in Jupyter Notebooks but no output whatsoeev
+Result: does nothing, copy and pasted in Jupyter Notebooks but no output whatsoever
 
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.15.52%20PM.png)
 
 
-
+```
 class LinePrinter():
     """
     Print things to stdout on one line dynamically
@@ -53,8 +53,9 @@ class LinePrinter():
     def __init__(self,data):
         sys.stdout.write("\r\x1b[K"+data.__str__())
         sys.stdout.flush()
+```
 
-Jianrong 1
+Result: does nothing, copy and pasted in Jupyter Notebooks but no output whatsoever
 
 
 Copies all slides in main and all its subfolders, source:gbmFldID, dest:rajsFldId
@@ -810,16 +811,20 @@ class LinePrinter():
 """
 Ashwin
 how to copy an item to folder by python
-Must provide folderID seperately
+Must define folderID seperately
 """
 
 folderId='5b4cc18692ca9a001ae72aff'
 gc.post("item/" + itemID + '/copy', {"folderId": folderID})
 
+![alt text](get_1 -- send to Albert)
+
 
 
 --------------
 copy all slides in a folder to another folder :
+must define itemID seperately
+
 for slide in gc.listItem(sourceFldID):
  gc.post("item/" + slide['_id'] + '/copy', {"folderId": destFldID})
 -----------------------------------------------------------------
