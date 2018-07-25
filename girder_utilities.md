@@ -25,7 +25,7 @@ def recurseGetItems(client, folderID, parentType='folder'):
     return items
 
 
-![alt text](https://is3-ssl.mzstatic.com/image/thumb/Purple19/v4/44/d5/52/44d552f0-9ade-4714-652e-c0a9a6ef2ad7/pr_source.png/246x0w.jpg)
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.15.52%20PM.png)
 
 class LinePrinter():
     """
