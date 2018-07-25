@@ -24,8 +24,8 @@ def recurseGetItems(client, folderID, parentType='folder'):
             items.extend (recurseGetItems(client,fld['id']))
     return items
 
-    ![alt text](../Desktop/Screen Shot 2018-07-25 at 3.15.52 PM.png)
 
+![alt text](../Desktop/Screen Shot 2018-07-25 at 3.15.52 PM.png)
 
 class LinePrinter():
     """
