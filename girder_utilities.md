@@ -12,6 +12,7 @@ gc.authenticate(interactive=True)
 ```
 Logs you into Girder - prompts for login and password:
 
+
 ```
 import sys
 def recurseGetItems(client, folderID, parentType='folder'):
@@ -797,7 +798,6 @@ class LinePrinter():
         sys.stdout.write("\r\x1b[K"+data.__str__())
         sys.stdout.flush()
 --------------------------------------------------------
-Ashwin
 how to copy an item to folder by python
 gc.post("item/" + itemID + '/copy', {"folderId": folderID})
 --------------
