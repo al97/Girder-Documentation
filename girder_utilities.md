@@ -9,7 +9,7 @@ API_URL = "http://digitalslidearchive.emory.edu:8080/api/v1"
 gc = girder_client.GirderClient(apiUrl=API_URL)
 gc.authenticate(interactive=True)
 
-'''
+```
 import sys
 def recurseGetItems(client, folderID, parentType='folder'):
     folders = []
@@ -24,7 +24,7 @@ def recurseGetItems(client, folderID, parentType='folder'):
         for fld in folders:
             items.extend (recurseGetItems(client,fld['id']))
     return items
-'''
+```
 
 Result: does nothing, copy and pasted in Jupyter Notebooks but no output whatsoeev
 
