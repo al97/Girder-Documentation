@@ -1,8 +1,10 @@
+GIRDER DOCUMENTATION
+--------------------------------------------------------------
 Tasks include how to download an image, how to sync a local image collection with the "GIRDER" version...
 how to download a directory, how to list ITEMS in a directory... how to list FILES in an item..
 Explain what an item IS!!! I..e. an item can contain many files(that often have the same / similar content)
---------------------------------------------------------------
-Simple girder utility to copy all the images in the main (and all sub folders) - Raj 05/10
+
+Code to initialize Girder:
 
 ```
 import girder_client
@@ -805,13 +807,15 @@ class LinePrinter():
     def __init__(self,data):
         sys.stdout.write("\r\x1b[K"+data.__str__())
         sys.stdout.flush()
---------------------------------------------------------
+"""
 Ashwin
 how to copy an item to folder by python
 Must provide folderID seperately
+"""
 
 folderId='5b4cc18692ca9a001ae72aff'
 gc.post("item/" + itemID + '/copy', {"folderId": folderID})
+
 
 
 --------------
