@@ -11,6 +11,14 @@ gc = girder_client.GirderClient(apiUrl=API_URL)
 gc.authenticate(interactive=True)
 ```
 Logs you into Girder - prompts for login and password:
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.48.45%20PM.png)
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.48.55%20PM.png)
+
+To check that you've been logged in, there is no confirmation if correct:
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.49.02%20PM.png)
+
+Only Error if incorrect:
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.49.12%20PM.png)
 
 
 ```
@@ -798,8 +806,14 @@ class LinePrinter():
         sys.stdout.write("\r\x1b[K"+data.__str__())
         sys.stdout.flush()
 --------------------------------------------------------
+Ashwin
 how to copy an item to folder by python
+Must provide folderID seperately
+
+folderId='5b4cc18692ca9a001ae72aff'
 gc.post("item/" + itemID + '/copy', {"folderId": folderID})
+
+
 --------------
 copy all slides in a folder to another folder :
 for slide in gc.listItem(sourceFldID):
