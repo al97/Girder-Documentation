@@ -65,6 +65,7 @@ works as intended
 rajsFldId = '5b046b8192ca9a001abb1c66'
 gbmFldId = '59f7697092ca9a001734c565'
 
+```
 sldList = list(gc.getResource('resource/' + gbmFldId + '/items?type=folder&limit=10000&sort=_id&sortdir=1'))
 length = len(sldList)
 count = 0
@@ -80,6 +81,7 @@ for sld in sldList:
           count += 1
       break
       LinePrinter("Slide %s of %s copied." % (count, length))
+```
 
    counts the slide duplicates
   works as intended
@@ -812,7 +814,7 @@ class LinePrinter():
 """
 Ashwin
 how to copy an item to folder by python
-Must define folderID seperately
+Must define folderID separately
 """
 
 folderId='5b4cc18692ca9a001ae72aff'
@@ -824,7 +826,7 @@ gc.post("item/" + itemID + '/copy', {"folderId": folderID})
 
 --------------
 copy all slides in a folder to another folder :
-must define itemID seperately
+must define itemID separately
 
 for slide in gc.listItem(sourceFldID):
  gc.post("item/" + slide['_id'] + '/copy', {"folderId": destFldID})
