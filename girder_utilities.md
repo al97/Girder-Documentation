@@ -9,6 +9,7 @@ API_URL = "http://digitalslidearchive.emory.edu:8080/api/v1"
 gc = girder_client.GirderClient(apiUrl=API_URL)
 gc.authenticate(interactive=True)
 
+'''
 import sys
 def recurseGetItems(client, folderID, parentType='folder'):
     folders = []
@@ -23,10 +24,11 @@ def recurseGetItems(client, folderID, parentType='folder'):
         for fld in folders:
             items.extend (recurseGetItems(client,fld['id']))
     return items
+'''
 
-Result:
+Result: does nothing, copy and pasted in Jupyter Notebooks but no output whatsoeev
+
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.15.52%20PM.png)
-does nothing
 
 
 
@@ -792,6 +794,7 @@ class LinePrinter():
         sys.stdout.write("\r\x1b[K"+data.__str__())
         sys.stdout.flush()
 --------------------------------------------------------
+Ashwin
 how to copy an item to folder by python
 gc.post("item/" + itemID + '/copy', {"folderId": folderID})
 --------------
