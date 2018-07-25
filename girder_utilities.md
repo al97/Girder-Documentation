@@ -24,6 +24,7 @@ def recurseGetItems(client, folderID, parentType='folder'):
             items.extend (recurseGetItems(client,fld['id']))
     return items
 
+Result:
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.15.52%20PM.png)
 does nothing
 
@@ -1050,7 +1051,7 @@ def recurseGetResource(client, parentId, resourceType, parentType='folder'):
             print "HTTP Error thrown"
 
              print HttpError(err)
-            print err
+            print err,
             return []
     elif resourceType is 'folder':
         resourceList.extend(folders)
