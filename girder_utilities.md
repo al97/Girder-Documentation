@@ -56,6 +56,7 @@ class LinePrinter():
 ```
 
 Result: does nothing, copy and pasted in Jupyter Notebooks but no output whatsoever
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.54.12%20PM.png)
 
 
 Copies all slides in main and all its subfolders, source:gbmFldID, dest:rajsFldId
@@ -827,6 +828,8 @@ must define itemID seperately
 
 for slide in gc.listItem(sourceFldID):
  gc.post("item/" + slide['_id'] + '/copy', {"folderId": destFldID})
+
+ ![alt text](get_2 -- send to Albert)
 -----------------------------------------------------------------
 def recurseGetItems(client, folderID, parentType='folder'):
     '''
