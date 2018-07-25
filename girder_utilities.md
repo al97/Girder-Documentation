@@ -4,10 +4,13 @@ Explain what an item IS!!! I..e. an item can contain many files(that often have 
 --------------------------------------------------------------
 Simple girder utility to copy all the images in the main (and all sub folders) - Raj 05/10
 
+```
 import girder_client
 API_URL = "http://digitalslidearchive.emory.edu:8080/api/v1"
 gc = girder_client.GirderClient(apiUrl=API_URL)
 gc.authenticate(interactive=True)
+```
+Logs you into Girder - prompts for login and password:
 
 ```
 import sys
