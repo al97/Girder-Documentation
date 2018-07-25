@@ -62,10 +62,10 @@ Result: does nothing, copy and pasted in Jupyter Notebooks but no output whatsoe
 Copies all slides in main and all its subfolders, source:gbmFldID, dest:rajsFldId
 works as intended
 
+```
 rajsFldId = '5b046b8192ca9a001abb1c66'
 gbmFldId = '59f7697092ca9a001734c565'
 
-```
 sldList = list(gc.getResource('resource/' + gbmFldId + '/items?type=folder&limit=10000&sort=_id&sortdir=1'))
 length = len(sldList)
 count = 0
@@ -83,34 +83,33 @@ for sld in sldList:
       LinePrinter("Slide %s of %s copied." % (count, length))
 ```
 
-   counts the slide duplicates
-  works as intended
-
+Counts the slide duplicates, works as intended:
+```
 rajsFldId = '5ae351e792ca9a0020d95e50'
 count =0
-
 for sld in gc.getResource('resource/' + rajsFldId + '/items?type=folder&limit=10000&sort=_id&sortdir=1'):
     if '(' in sld['name']:
         count+=1
 print count
+```
 
    delete the duplicated slides
   works as intended
 
+```
 rajsFldId = '5ae351e792ca9a0020d95e50'
 
 count =0
-
 for sld in gc.getResource('resource/' + rajsFldId + '/items?type=folder&limit=10000&sort=_id&sortdir=1'):
     if '(' in sld['name']:
         gc.delete("item/" + sld['_id'])
         count+=1
 
 print count
-
+```
   count total number of slides in the folder
   works as intended
-
+```
 rajsFldId = '5ae351e792ca9a0020d95e50'
 count =0
 
@@ -118,6 +117,7 @@ for sld in gc.getResource('resource/' + rajsFldId + '/items?type=folder&limit=10
     count+=1
 
 print count
+```
 -------------------------------------------------------------------
 
 Getting the sample count for each of the classes¶
@@ -125,19 +125,20 @@ Coded by JCV
 Last updated: 5/1/2018
 Several artifacts in each slide have been labeled as either yes or no to indicate whether the artifact is present or not in the slide. Each class is a permuation of these label (e.g. class 1 is Artifact1=Yes & Artifact2=Yes, class 2 is Artifact1=Yes & Artifact2=No)
 
-  dependencies
+dependencies
+```
 import girder_client
 import numpy as np
 import pandas as pd
 from IPython.display import display, HTML
 import itertools
 
-  log in to api
 API_URL = "http://digitalslidearchive.emory.edu:8080/api/v1"
 gc = girder_client.GirderClient(apiUrl=API_URL)
 gc.authenticate(interactive=True)
 
 sourceFldId = '5ae351e792ca9a0020d95e50'
+```
 
  Errors Encountered:
  No. of slides--- unnamed tag 'meta', was unable to retrieve count
@@ -154,6 +155,7 @@ sourceFldId = '5ae351e792ca9a0020d95e50'
 
   get set of slides that have the tags of interest
   works as intended
+```
 slidesTagged = []
 tags = ['AirBubble', 'Blood', 'Ink']
 for sld in gc.listItem(sourceFldId):
@@ -161,8 +163,10 @@ for sld in gc.listItem(sourceFldId):
     if all (tag in tags_current for tag in tags):
         slidesTagged.append(sld)
 print 'There are %s labeled slides.' % len(slidesTagged)
+```
 
   get the count for all the possible classes (permuation of tag values)
+```
 ftLabel = ['Yes','No']
 classes = [list(y for y in x) for x in itertools.product(ftLabel, ftLabel, ftLabel)]
 counts = [0]*len(classes)
@@ -172,14 +176,17 @@ for sld in slidesTagged:
         if all (tc[tags[j]]==classes[i][j] for j in range(len(tags))):
             counts[i] += 1
             continue
+```
 
   use pandas do display the results of number of slides for each class
   works as intended
+```
 data = np.hstack((np.array([range(len(classes))]).T, np.array(classes), np.array([counts]).T))
 titles = np.hstack((np.array(['Class  ']), np.array(tags), np.array(['Count'])))
 df = pd.DataFrame(data)
 df = pd.DataFrame(data, columns=titles)
 display(HTML(df.to_html(index=False)))
+```
 
 --------------------------------------------------------------------------------
   Albert
@@ -188,6 +195,7 @@ display(HTML(df.to_html(index=False)))
 
 Download the images from the Girder
 
+```
 import girder_client
 API_URL = "http://digitalslidearchive.emory.edu:8080/api/v1"
 
@@ -224,15 +232,19 @@ for slide in gc.listItem(folderID):
     LinePrinter("Saving image %s of %s" % (count, numImages))
     path = "/media/raj/Raj1_5/wsi_directory/"
     t = saveSVSslide(slide, path)
+```
 ---------------------------------------------
 labeled images download
 
+```
 import girder_client
 API_URL = "http://digitalslidearchive.emory.edu:8080/api/v1"
 gc = girder_client.GirderClient(apiUrl=API_URL)
 gc.authenticate(interactive=True)
+```
 
-  get all the slides that have the label flag, aka they have been marked up with ground truth
+get all the slides that have the label flag, aka they have been marked up with ground truth
+```
 from pprint import pprint
 sourceFldID = '5ae351e792ca9a0020d95e50'
 slides_lbd = []
@@ -242,8 +254,10 @@ for sld in gc.listItem(sourceFldID):
         sld['meta']['tags'].has_key('LabelFlag') and \
         sld['meta']['tags']['LabelFlag']:
         slides_lbd.append(sld)
+```
 
-  get all the slides that have the AirBubble set to Yes, aka slides have AirBubble
+get all the slides that have the AirBubble set to Yes, aka slides have AirBubble
+```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 air_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -254,8 +268,10 @@ for sld in gc.listItem(sourceFldID):
         air_yes_slides_lbd.append(sld)
 
 len(air_yes_slides_lbd)
+```
 
-  get all the slides that have the AirBubble set to No, aka slides have no AirBubble
+get all the slides that have the AirBubble set to No, aka slides have no AirBubble
+```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 air_no_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -266,9 +282,11 @@ for sld in gc.listItem(sourceFldID):
         air_no_slides_lbd.append(sld)
 
 len(air_no_slides_lbd)
+```
 
-  get all the slides that have the Blood set to Yes, aka slides have Blood
-  working
+get all the slides that have the Blood set to Yes, aka slides have Blood
+working
+```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 bld_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -279,9 +297,11 @@ for sld in gc.listItem(sourceFldID):
         bld_yes_slides_lbd.append(sld)
 
 len(bld_yes_slides_lbd)
+```
 
  WORKING
   get all the slides that have the Blood set to No, aka slides have no Blood
+```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 bld_no_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -292,9 +312,11 @@ for sld in gc.listItem(sourceFldID):
         bld_no_slides_lbd.append(sld)
 
 len(bld_no_slides_lbd)
+```
 
-  working
-  get all the slides that have the Ink set to Yes, aka slides have Ink
+working
+get all the slides that have the Ink set to Yes, aka slides have Ink
+```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 ink_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -305,9 +327,11 @@ for sld in gc.listItem(sourceFldID):
         ink_yes_slides_lbd.append(sld)
 
 len(ink_yes_slides_lbd)
+```
 
-  get all the slides that have the Ink set to No, aka slides have no Ink
-  working
+get all the slides that have the Ink set to No, aka slides have no Ink  
+working
+```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 ink_no_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -318,10 +342,11 @@ for sld in gc.listItem(sourceFldID):
         ink_no_slides_lbd.append(sld)
 
 len(ink_no_slides_lbd)
+```
 
-  get all the slides that have the Sharpie set to Yes, aka slides have Sharpie
-  there are no slides marked as Sharpie
- 0 - working
+get all the slides that have the Sharpie set to Yes, aka slides have Sharpie
+there are no slides marked as Sharpie 0 - working
+```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 sha_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -332,9 +357,11 @@ for sld in gc.listItem(sourceFldID):
         sha_yes_slides_lbd.append(sld)
 
 len(sha_yes_slides_lbd)
+```
 
-  get all the slides that have the Sharpie set to No, aka slides have no Sharpie
- 0- working
+get all the slides that have the Sharpie set to No, aka slides have no Sharpie
+0- working
+```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 sha_no_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -345,10 +372,11 @@ for sld in gc.listItem(sourceFldID):
         sha_no_slides_lbd.append(sld)
 
 len(sha_no_slides_lbd)
+```
 
-
-  print("  of Sharpie   - Yes Slides: "+ str(len(sha_yes_slides_lbd)))
-  print("  of Sharpie   - No  Slides: "+ str(len(sha_no_slides_lbd)))
+```
+print("  of Sharpie   - Yes Slides: "+ str(len(sha_yes_slides_lbd)))
+print("  of Sharpie   - No  Slides: "+ str(len(sha_no_slides_lbd)))
 print("  of AirBubble - Yes Slides: "+ str(len(air_yes_slides_lbd)))
 print("  of AirBubble - No  Slides: "+ str(len(air_no_slides_lbd)))
 print("  of Blood     - Yes Slides: "+ str(len(bld_yes_slides_lbd)))
@@ -356,10 +384,12 @@ print("  of Blood     - No  Slides: "+ str(len(bld_no_slides_lbd)))
 print("  of Ink       - Yes Slides: "+ str(len(ink_yes_slides_lbd)))
 print("  of Ink       - No  Slides: "+ str(len(ink_no_slides_lbd)))
 print("Total- No  Slides: "+ str(len(slides_lbd)))
+```
 
+get all the slides that have the AirBubble and  Blood set to Yes, aka slides have AirBubble and Blood
+works
 
-  get all the slides that have the AirBubble and  Blood set to Yes, aka slides have AirBubble and Blood
-  works
+```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 airbld_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -373,10 +403,12 @@ for sld in gc.listItem(sourceFldID):
              print (sld['_id'])
 
 len(airbld_yes_slides_lbd)
+```
 
 
-  get all the slides that have the AirBubble and  Ink set to Yes , aka slides have AirBubble and Ink
-  working
+get all the slides that have the AirBubble and  Ink set to Yes , aka slides have AirBubble and Ink
+working
+```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 airink_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -387,10 +419,12 @@ for sld in gc.listItem(sourceFldID):
         airink_yes_slides_lbd.append(sld)
 
 len(airink_yes_slides_lbd)
+```
 
 
-  get all the slides that have the Blood and  Ink set to Yes , aka slides have Blood and Ink
-  working
+get all the slides that have the Blood and  Ink set to Yes , aka slides have Blood and Ink
+working
+```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 bldink_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -401,9 +435,11 @@ for sld in gc.listItem(sourceFldID):
         bldink_yes_slides_lbd.append(sld)
 
 len(bldink_yes_slides_lbd)
+```
 
-  get all the slides that all three markings
-  working
+get all the slides that all three markings
+working
+```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 all_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -415,8 +451,10 @@ for sld in gc.listItem(sourceFldID):
         all_yes_slides_lbd.append(sld)
 
 len(all_yes_slides_lbd)
+```
 
-  get all the slides that all three markings
+get all the slides that all three markings
+```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 all_no_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -428,12 +466,13 @@ for sld in gc.listItem(sourceFldID):
         all_no_slides_lbd.append(sld)
 
 len(all_no_slides_lbd)
+```
 
 -------------------------------------------------------------
   girder_utils - Girder Utilities
-
+```
 import girder_client
- import HttpError
+import HttpError
 
 
 def recurseGetItems(client, folderId):
@@ -445,7 +484,9 @@ def recurseGetItems(client, folderId):
         items += list(tmp)
 
     return items
+```
 
+```
 def recurseGetResource(client, parentId, resourceType, parentType='folder'):
 
 
@@ -503,12 +544,14 @@ def recurseGetResource(client, parentId, resourceType, parentType='folder'):
         resourceList.extend(recurseGetResource(client, folderId, resourceType))
 
     return resourceList
+```
 
+```
 def getField(data, strKey):
     return [i[strKey] for i in data]
+```
 
-
-
+```
 def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parentFolderID, parentType='folder'):
     """Since a folder name may (or may not) be unique across a collection, or across girder
     This will search for folder FOO in the folder BAR, and will create a folder if it doesn't exist yet"""
@@ -521,7 +564,9 @@ def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parent
         folderData = gc.getResource(requestUrl)[0]
 
     return folderData['_id']
+```
 
+```
 def lookupItemByName( girderClient, parentFolderID, itemName):
     """Sees if an item of FOO already exists in folder BAR"""
     gc = girderClient
@@ -533,6 +578,9 @@ def lookupItemByName( girderClient, parentFolderID, itemName):
          print "Found no item data"
             no item found
         return False
+```
+
+```
 def copySlideToCuratedFolder( girderClient, itemData, metaData, namingScheme, curatedFolderID ):
     """Assuming namingScheme = ADRC, which creates a subject folder and a stain folder"""
 
@@ -555,7 +603,9 @@ def copySlideToCuratedFolder( girderClient, itemData, metaData, namingScheme, cu
             except:
                 print "failed " + folderName
                 pass
+```
 
+```
 def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parentFolderID, parentType='folder'):
     """Since a folder name may (or may not) be unique across a collection, or across girder
     This will search for folder FOO in the folder BAR, and will create a folder if it doesn't exist yet"""
@@ -568,9 +618,11 @@ def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parent
         folderData = gc.getResource(requestUrl)[0]
 
     return folderData['_id']
+```
 ---------------------------------------------------------------------------------------------
    To create Virtual Folder Structure
 
+```
 import girder_client
 from girder_utils import recurseGetResource
 import json
@@ -596,9 +648,12 @@ from pprint import pprint
 for i in gc.listItem(topfolder):
     pprint(i)
     break
+```
 -----------------------------------------
 
-  create Virtual Folder Structure...
+create Virtual Folder Structure...
+
+```  
 import girder_client
 from girder_utils import recurseGetResource
 import json
@@ -728,31 +783,42 @@ for regionName in regionList:
     postRoute_wp = postRoute % ( ByRegionFolderID, regionName, regionName, folderGenQuery)
     print regionName
     gc.post(postRoute_wp)
+```
 --------------------------------------------------
-
+```
 case 'getCollURL':
       url = config.BASE_URL + "/resource/lookup?path=collection/" + config.COLLECTION_NAME;
       promise = makePromise(url);
       break;
+```
+
+```
 case 'listFoldersInCollection':
       url = config.BASE_URL + "/folder?limit=1000&parentType=collection&parentId=" + girderObjectID;
       promise = makePromise(url);
       break;
+```
+
+```
 case 'listFoldersinFolder':
       url = config.BASE_URL + "/folder?parentType=folder&parentId=" + girderObjectID;
       promise = makePromise(url);
       break;
                 //adrc.digitalslidearchive.emory.edu:8080/api/v1/item?folderId=5ad11d6a92ca9a001adee5b3&limit=50&sort=lowerName&sortdir=1
+```
 
+```
 case 'listItemsInFolder':
       url = config.BASE_URL + "/item?folderId=" + girderObjectID + "&limit=5000"
       // url = config.BASE_URL + "/item?limit=500&folderId=" + girderObjectID;
       promise = makePromise(url);
       break;
+```
 ------------------------------------------
 
 Added on 07/16/2018
 
+```
 def get_collection_id(gc, collection_name):
       given a girder client object that is authenticated and a collection name,
       returns the id of the collection.
@@ -760,7 +826,9 @@ def get_collection_id(gc, collection_name):
         return gc.get("resource/lookup?path=collection/%s" % collection_name)['_id']
     except:
         raise ValueError("There is no collection with that name.")
+```
 
+```
 def listResources(gc, endpoint_id, endpoint_type='collection', limit=50000):
       given collection/folder name or id, it returns a list of items
       under the endpoint recursively.
@@ -768,7 +836,9 @@ def listResources(gc, endpoint_id, endpoint_type='collection', limit=50000):
         return list(gc.listResource("resource/%s/items?type=%s" % (endpoint_id, endpoint_type), limit=limit))
     except:
         raise ValueError("The id does not match any endpoint id in the DSA.")
+```
 
+```
 def correct_stain(stain, stainTypes = ['Biels','HE','LFB_PAS','Tau','Ubiq', \
                       'aBeta','aSyn','pTDP', 'NF', 'SM', 'Thio']):
       given a list of stain types, this functions tries to re-spell the stains metadata tag
@@ -790,7 +860,9 @@ def correct_stain(stain, stainTypes = ['Biels','HE','LFB_PAS','Tau','Ubiq', \
         return stain
     else:
         return 'unknown'
+```
 
+```
 def clean_metadata(metadata):
       cleans the metadata to remove unwanted leading and trailing chracters.
       Cleans the stain type and block ID.
@@ -803,7 +875,9 @@ def clean_metadata(metadata):
                 v = 'unknown' if v == '' else v.upper()
             clean_metadata[k] = v.strip('_|-| ')
     return clean_metadata
+```
 
+```
 class LinePrinter():
     """
     Print things to stdout on one line dynamically.
@@ -811,6 +885,8 @@ class LinePrinter():
     def __init__(self,data):
         sys.stdout.write("\r\x1b[K"+data.__str__())
         sys.stdout.flush()
+```
+
 """
 Ashwin
 how to copy an item to folder by python
