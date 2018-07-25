@@ -24,8 +24,10 @@ def recurseGetItems(client, folderID, parentType='folder'):
             items.extend (recurseGetItems(client,fld['id']))
     return items
 
-
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.15.52%20PM.png)
+does nothing
+
+
 
 class LinePrinter():
     """
@@ -35,8 +37,11 @@ class LinePrinter():
         sys.stdout.write("\r\x1b[K"+data.__str__())
         sys.stdout.flush()
 
-## Copies all slides in main and all its subfolders, source:gbmFldID, dest:rajsFldId
-# works as intended
+Jianrong 1
+
+
+Copies all slides in main and all its subfolders, source:gbmFldID, dest:rajsFldId
+works as intended
 
 rajsFldId = '5b046b8192ca9a001abb1c66'
 gbmFldId = '59f7697092ca9a001734c565'
@@ -47,18 +52,18 @@ count = 0
 
 for sld in sldList:
     if '(1)' in sld['name']:
-#         print sld['name']
-#         itemData = gc.get('/item?folderId=%s&name=%s&limit=50&offset=0&sort=lowerName&sortdir=1' % (rajsFldId, sld['name']))
-#         itemData
-#         break
-#         if itemData == []:
+          print sld['name']
+          itemData = gc.get('/item?folderId=%s&name=%s&limit=50&offset=0&sort=lowerName&sortdir=1' % (rajsFldId, sld['name']))
+          itemData
+          break
+          if itemData == []:
         gc.post("item/" + sld['_id'] + '/copy', {"folderId": rajsFldId})
-#         count += 1
-#     break
-#     LinePrinter("Slide %s of %s copied." % (count, length))
+          count += 1
+      break
+      LinePrinter("Slide %s of %s copied." % (count, length))
 
-## counts the slide duplicates
-# works as intended
+   counts the slide duplicates
+  works as intended
 
 rajsFldId = '5ae351e792ca9a0020d95e50'
 count =0
@@ -68,8 +73,8 @@ for sld in gc.getResource('resource/' + rajsFldId + '/items?type=folder&limit=10
         count+=1
 print count
 
-## delete the duplicated slides
-# works as intended
+   delete the duplicated slides
+  works as intended
 
 rajsFldId = '5ae351e792ca9a0020d95e50'
 
@@ -82,8 +87,8 @@ for sld in gc.getResource('resource/' + rajsFldId + '/items?type=folder&limit=10
 
 print count
 
-# count total number of slides in the folder
-# works as intended
+  count total number of slides in the folder
+  works as intended
 
 rajsFldId = '5ae351e792ca9a0020d95e50'
 count =0
@@ -99,35 +104,35 @@ Coded by JCV
 Last updated: 5/1/2018
 Several artifacts in each slide have been labeled as either yes or no to indicate whether the artifact is present or not in the slide. Each class is a permuation of these label (e.g. class 1 is Artifact1=Yes & Artifact2=Yes, class 2 is Artifact1=Yes & Artifact2=No)
 
-# dependencies
+  dependencies
 import girder_client
 import numpy as np
 import pandas as pd
 from IPython.display import display, HTML
 import itertools
 
-# log in to api
+  log in to api
 API_URL = "http://digitalslidearchive.emory.edu:8080/api/v1"
 gc = girder_client.GirderClient(apiUrl=API_URL)
 gc.authenticate(interactive=True)
 
 sourceFldId = '5ae351e792ca9a0020d95e50'
 
-#Errors Encountered:
-#No. of slides--- unnamed tag 'meta', was unable to retrieve count
-#sourceFldId = '5ae351e792ca9a0020d95e5'
-#sourceFldId = '5a1b392492ca9a001824c10c'
-#KeyError                                  Traceback (most recent call last)
-#<ipython-input-22-bdda789adf8f> in <module>()
-#      3 tags = ['AirBubble', 'Blood', 'Ink']
-#      4 for sld in gc.listItem(sourceFldId):
-#----> 5     tags_current = sld['meta']['tags']
-#6     if all (tag in tags_current for tag in tags):
-#      7         slidesTagged.append(sld)
-#KeyError: 'meta'
+ Errors Encountered:
+ No. of slides--- unnamed tag 'meta', was unable to retrieve count
+ sourceFldId = '5ae351e792ca9a0020d95e5'
+ sourceFldId = '5a1b392492ca9a001824c10c'
+ KeyError                                  Traceback (most recent call last)
+ <ipython-input-22-bdda789adf8f> in <module>()
+       3 tags = ['AirBubble', 'Blood', 'Ink']
+       4 for sld in gc.listItem(sourceFldId):
+ ----> 5     tags_current = sld['meta']['tags']
+ 6     if all (tag in tags_current for tag in tags):
+       7         slidesTagged.append(sld)
+ KeyError: 'meta'
 
-# get set of slides that have the tags of interest
-# works as intended
+  get set of slides that have the tags of interest
+  works as intended
 slidesTagged = []
 tags = ['AirBubble', 'Blood', 'Ink']
 for sld in gc.listItem(sourceFldId):
@@ -136,7 +141,7 @@ for sld in gc.listItem(sourceFldId):
         slidesTagged.append(sld)
 print 'There are %s labeled slides.' % len(slidesTagged)
 
-# get the count for all the possible classes (permuation of tag values)
+  get the count for all the possible classes (permuation of tag values)
 ftLabel = ['Yes','No']
 classes = [list(y for y in x) for x in itertools.product(ftLabel, ftLabel, ftLabel)]
 counts = [0]*len(classes)
@@ -147,18 +152,18 @@ for sld in slidesTagged:
             counts[i] += 1
             continue
 
-# use pandas do display the results of number of slides for each class
-# works as intended
+  use pandas do display the results of number of slides for each class
+  works as intended
 data = np.hstack((np.array([range(len(classes))]).T, np.array(classes), np.array([counts]).T))
-titles = np.hstack((np.array(['Class #']), np.array(tags), np.array(['Count'])))
+titles = np.hstack((np.array(['Class  ']), np.array(tags), np.array(['Count'])))
 df = pd.DataFrame(data)
 df = pd.DataFrame(data, columns=titles)
 display(HTML(df.to_html(index=False)))
 
 --------------------------------------------------------------------------------
-# Albert
-# works, but there's a slight problem with MAC OSX file path readings
-# by slight problem I mean that it doesn't work lol
+  Albert
+  works, but there's a slight problem with MAC OSX file path readings
+  by slight problem I mean that it doesn't work lol
 
 Download the images from the Girder
 
@@ -172,7 +177,7 @@ import sys, os
 from IPython.display import Image
 import urllib
 
-# dsaGC = gc.GirderClient(apiUrl="http://adrc.digitalslidearchive.emory.edu:8080/api/v1")
+  dsaGC = gc.GirderClient(apiUrl="http://adrc.digitalslidearchive.emory.edu:8080/api/v1")
 
 class LinePrinter():
     """
@@ -193,8 +198,8 @@ count = 0
 
 for slide in gc.listItem(folderID):
     count += 1
-#     pprint(slide)
-#     break
+      pprint(slide)
+      break
     LinePrinter("Saving image %s of %s" % (count, numImages))
     path = "/media/raj/Raj1_5/wsi_directory/"
     t = saveSVSslide(slide, path)
@@ -206,7 +211,7 @@ API_URL = "http://digitalslidearchive.emory.edu:8080/api/v1"
 gc = girder_client.GirderClient(apiUrl=API_URL)
 gc.authenticate(interactive=True)
 
-# get all the slides that have the label flag, aka they have been marked up with ground truth
+  get all the slides that have the label flag, aka they have been marked up with ground truth
 from pprint import pprint
 sourceFldID = '5ae351e792ca9a0020d95e50'
 slides_lbd = []
@@ -217,7 +222,7 @@ for sld in gc.listItem(sourceFldID):
         sld['meta']['tags']['LabelFlag']:
         slides_lbd.append(sld)
 
-# get all the slides that have the AirBubble set to Yes, aka slides have AirBubble
+  get all the slides that have the AirBubble set to Yes, aka slides have AirBubble
 sourceFldID = '5ae351e792ca9a0020d95e50'
 air_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -229,7 +234,7 @@ for sld in gc.listItem(sourceFldID):
 
 len(air_yes_slides_lbd)
 
-# get all the slides that have the AirBubble set to No, aka slides have no AirBubble
+  get all the slides that have the AirBubble set to No, aka slides have no AirBubble
 sourceFldID = '5ae351e792ca9a0020d95e50'
 air_no_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -241,8 +246,8 @@ for sld in gc.listItem(sourceFldID):
 
 len(air_no_slides_lbd)
 
-# get all the slides that have the Blood set to Yes, aka slides have Blood
-# working
+  get all the slides that have the Blood set to Yes, aka slides have Blood
+  working
 sourceFldID = '5ae351e792ca9a0020d95e50'
 bld_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -254,8 +259,8 @@ for sld in gc.listItem(sourceFldID):
 
 len(bld_yes_slides_lbd)
 
-#WORKING
-# get all the slides that have the Blood set to No, aka slides have no Blood
+ WORKING
+  get all the slides that have the Blood set to No, aka slides have no Blood
 sourceFldID = '5ae351e792ca9a0020d95e50'
 bld_no_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -267,8 +272,8 @@ for sld in gc.listItem(sourceFldID):
 
 len(bld_no_slides_lbd)
 
-# working
-# get all the slides that have the Ink set to Yes, aka slides have Ink
+  working
+  get all the slides that have the Ink set to Yes, aka slides have Ink
 sourceFldID = '5ae351e792ca9a0020d95e50'
 ink_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -280,8 +285,8 @@ for sld in gc.listItem(sourceFldID):
 
 len(ink_yes_slides_lbd)
 
-# get all the slides that have the Ink set to No, aka slides have no Ink
-# working
+  get all the slides that have the Ink set to No, aka slides have no Ink
+  working
 sourceFldID = '5ae351e792ca9a0020d95e50'
 ink_no_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -293,9 +298,9 @@ for sld in gc.listItem(sourceFldID):
 
 len(ink_no_slides_lbd)
 
-# get all the slides that have the Sharpie set to Yes, aka slides have Sharpie
-# there are no slides marked as Sharpie
-#0 - working
+  get all the slides that have the Sharpie set to Yes, aka slides have Sharpie
+  there are no slides marked as Sharpie
+ 0 - working
 sourceFldID = '5ae351e792ca9a0020d95e50'
 sha_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -307,8 +312,8 @@ for sld in gc.listItem(sourceFldID):
 
 len(sha_yes_slides_lbd)
 
-# get all the slides that have the Sharpie set to No, aka slides have no Sharpie
-#0- working
+  get all the slides that have the Sharpie set to No, aka slides have no Sharpie
+ 0- working
 sourceFldID = '5ae351e792ca9a0020d95e50'
 sha_no_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -321,19 +326,19 @@ for sld in gc.listItem(sourceFldID):
 len(sha_no_slides_lbd)
 
 
-# print("# of Sharpie   - Yes Slides: "+ str(len(sha_yes_slides_lbd)))
-# print("# of Sharpie   - No  Slides: "+ str(len(sha_no_slides_lbd)))
-print("# of AirBubble - Yes Slides: "+ str(len(air_yes_slides_lbd)))
-print("# of AirBubble - No  Slides: "+ str(len(air_no_slides_lbd)))
-print("# of Blood     - Yes Slides: "+ str(len(bld_yes_slides_lbd)))
-print("# of Blood     - No  Slides: "+ str(len(bld_no_slides_lbd)))
-print("# of Ink       - Yes Slides: "+ str(len(ink_yes_slides_lbd)))
-print("# of Ink       - No  Slides: "+ str(len(ink_no_slides_lbd)))
+  print("  of Sharpie   - Yes Slides: "+ str(len(sha_yes_slides_lbd)))
+  print("  of Sharpie   - No  Slides: "+ str(len(sha_no_slides_lbd)))
+print("  of AirBubble - Yes Slides: "+ str(len(air_yes_slides_lbd)))
+print("  of AirBubble - No  Slides: "+ str(len(air_no_slides_lbd)))
+print("  of Blood     - Yes Slides: "+ str(len(bld_yes_slides_lbd)))
+print("  of Blood     - No  Slides: "+ str(len(bld_no_slides_lbd)))
+print("  of Ink       - Yes Slides: "+ str(len(ink_yes_slides_lbd)))
+print("  of Ink       - No  Slides: "+ str(len(ink_no_slides_lbd)))
 print("Total- No  Slides: "+ str(len(slides_lbd)))
 
 
-# get all the slides that have the AirBubble and  Blood set to Yes, aka slides have AirBubble and Blood
-# works
+  get all the slides that have the AirBubble and  Blood set to Yes, aka slides have AirBubble and Blood
+  works
 sourceFldID = '5ae351e792ca9a0020d95e50'
 airbld_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -343,14 +348,14 @@ for sld in gc.listItem(sourceFldID):
         sld['meta']['tags']['AirBubble'] == "Yes" and sld['meta']['tags']['Blood'] == "Yes":
         airbld_yes_slides_lbd.append(sld)
 
-       # for sld in airbld_yes_slides_lbd:
-       #     print (sld['_id'])
+         for sld in airbld_yes_slides_lbd:
+             print (sld['_id'])
 
 len(airbld_yes_slides_lbd)
 
 
-# get all the slides that have the AirBubble and  Ink set to Yes , aka slides have AirBubble and Ink
-# working
+  get all the slides that have the AirBubble and  Ink set to Yes , aka slides have AirBubble and Ink
+  working
 sourceFldID = '5ae351e792ca9a0020d95e50'
 airink_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -363,8 +368,8 @@ for sld in gc.listItem(sourceFldID):
 len(airink_yes_slides_lbd)
 
 
-# get all the slides that have the Blood and  Ink set to Yes , aka slides have Blood and Ink
-# working
+  get all the slides that have the Blood and  Ink set to Yes , aka slides have Blood and Ink
+  working
 sourceFldID = '5ae351e792ca9a0020d95e50'
 bldink_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -376,8 +381,8 @@ for sld in gc.listItem(sourceFldID):
 
 len(bldink_yes_slides_lbd)
 
-# get all the slides that all three markings
-# working
+  get all the slides that all three markings
+  working
 sourceFldID = '5ae351e792ca9a0020d95e50'
 all_yes_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -390,7 +395,7 @@ for sld in gc.listItem(sourceFldID):
 
 len(all_yes_slides_lbd)
 
-# get all the slides that all three markings
+  get all the slides that all three markings
 sourceFldID = '5ae351e792ca9a0020d95e50'
 all_no_slides_lbd = []
 for sld in gc.listItem(sourceFldID):
@@ -404,10 +409,10 @@ for sld in gc.listItem(sourceFldID):
 len(all_no_slides_lbd)
 
 -------------------------------------------------------------
-# girder_utils - Girder Utilities
+  girder_utils - Girder Utilities
 
 import girder_client
-#import HttpError
+ import HttpError
 
 
 def recurseGetItems(client, folderId):
@@ -423,7 +428,7 @@ def recurseGetItems(client, folderId):
 def recurseGetResource(client, parentId, resourceType, parentType='folder'):
 
 
-    ### The recursion logic is broken here...
+        The recursion logic is broken here...
     """
     Recurse below the parent(indicated by parentId) and generate a list of all
     resources of type resourceType that existed under the parent.
@@ -439,19 +444,19 @@ def recurseGetResource(client, parentId, resourceType, parentType='folder'):
     :returns: A list of all folders or items below parentId.
     :rtype: list of dict
     """
-    # now get all folders
+      now get all folders
     resourceList = []
 
     try:
         folders = client.listFolder(parentId, parentFolderType=parentType)
     except girder_client.HttpError as err:
         print err
-#        print HttpError(err)
+         print HttpError(err)
         return []
 
-    #The line below is commented and moved below because this is an iterator and
-    #it consume the list only once, you will ending extending resourceList to None
-    #folderIdList = getField(folders, '_id')
+     The line below is commented and moved below because this is an iterator and
+     it consume the list only once, you will ending extending resourceList to None
+     folderIdList = getField(folders, '_id')
 
     if resourceType is 'item' and parentType is not 'collection':
         try:
@@ -460,7 +465,7 @@ def recurseGetResource(client, parentId, resourceType, parentType='folder'):
         except girder_client.HttpError as err:
             print "HTTP Error thrown"
 
-#            print HttpError(err)
+             print HttpError(err)
             print err
             return []
     elif resourceType is 'folder':
@@ -468,12 +473,12 @@ def recurseGetResource(client, parentId, resourceType, parentType='folder'):
     elif resourceType is not 'item' or resourceType is not 'folder':
         raise Exception('Invalid resourceType: %s' % resourceType)
 
-    #folderIdList is an iterator and can only be consumed once. Do not move it up in the function
+     folderIdList is an iterator and can only be consumed once. Do not move it up in the function
     folderIdList = getField(folders, '_id')
 
-    ### The recursion does NOT work if you start with a collection.. probably iwll work if it's a folder.
+        The recursion does NOT work if you start with a collection.. probably iwll work if it's a folder.
     for folderId in folderIdList:
-        #if re
+         if re
         resourceList.extend(recurseGetResource(client, folderId, resourceType))
 
     return resourceList
@@ -502,26 +507,26 @@ def lookupItemByName( girderClient, parentFolderID, itemName):
     try:
         itemData = gc.get('/item?folderId=%s&name=%s&limit=50&offset=0&sort=lowerName&sortdir=1' % (parentFolderID,itemName ))
         return itemData
-        #print itemData
+         print itemData
     except:
-        #print "Found no item data"
-        ### no item found
+         print "Found no item data"
+            no item found
         return False
 def copySlideToCuratedFolder( girderClient, itemData, metaData, namingScheme, curatedFolderID ):
     """Assuming namingScheme = ADRC, which creates a subject folder and a stain folder"""
 
     gc= girderClient
 
-    ## Refactor this to maybe just have it uses those keys in a list or something?
+       Refactor this to maybe just have it uses those keys in a list or something?
     if  namingScheme == 'patientID_stainType':
-        ## This could maybe recurse based on splitting the namingScheme, but may become hard to read
+           This could maybe recurse based on splitting the namingScheme, but may become hard to read
         firstBranchName = metaData['patientID']
         secondBranchName = metaData['stainType']
         firstBranch_FolderID = getFolderID_for_FolderName_in_ParentFolder( gc,firstBranchName,curatedFolderID)
-        ### The parent folder for the second branch is what's returned from the previous staement
+            The parent folder for the second branch is what's returned from the previous staement
         secondBranch_FolderID = getFolderID_for_FolderName_in_ParentFolder( gc,secondBranchName,firstBranch_FolderID)
 
-        ### Check if item already exists in the targetFolder
+            Check if item already exists in the targetFolder
         if not lookupItemByName( gc, secondBranch_FolderID, itemData['name']):
             print "Moving the folder to %s / %s " %  ( metaData['patientID'], metaData['stainType'] )
             try:
@@ -543,7 +548,7 @@ def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parent
 
     return folderData['_id']
 ---------------------------------------------------------------------------------------------
-#  To create Virtual Folder Structure
+   To create Virtual Folder Structure
 
 import girder_client
 from girder_utils import recurseGetResource
@@ -566,13 +571,13 @@ for slide in gc.listItem(sourceFldID):
 
 
 from pprint import pprint
-# "LabelFlag": true
+  "LabelFlag": true
 for i in gc.listItem(topfolder):
     pprint(i)
     break
 -----------------------------------------
 
-##create Virtual Folder Structure...
+  create Virtual Folder Structure...
 import girder_client
 from girder_utils import recurseGetResource
 import json
@@ -582,21 +587,21 @@ API_URL = "http://adrc.digitalslidearchive.emory.edu:8080/api/v1"
 gc = girder_client.GirderClient(apiUrl=API_URL)
 gc.authenticate(interactive=True)
 
-##Let's get the project by Name
+  Let's get the project by Name
 CollectionName = 'ADRC'
 ADRCCollUID =  gc.resourceLookup('/collection/%s' % CollectionName)
 
-## Let's also get the projectMetadata folder for this collection
+   Let's also get the projectMetadata folder for this collection
 metaDataFolder =  list(gc.listFolder(ADRCCollUID['_id'],parentFolderType='collection',name='.projectMetaData'))[0]
 pprint.pprint(metaDataFolder)
 
-# ## For the first iteration, I want to bootstrap this with the list of patient folders we have already created
-# patientFolder = gc.listFolder('5a2039e592ca9a0018254053')
+     For the first iteration, I want to bootstrap this with the list of patient folders we have already created
+  patientFolder = gc.listFolder('5a2039e592ca9a0018254053')
 
-# patientIDList = [x['name'] for x in patientFolder]
-# print patientIDList
+  patientIDList = [x['name'] for x in patientFolder]
+  print patientIDList
 
-### Be Careful you don't overwrite the projectScheme with whatever you manually edit here... unless you mean to do it
+    Be Careful you don't overwrite the projectScheme with whatever you manually edit here... unless you mean to do it
 
 stainType = ["TDP","TAU","AB","SYN","UBIQ","BIEL","HE","SM","THIO","LFB","NF"]
 patientID = [u'A01-94', u'A03-138', u'A11-120', u'A12-62', u'A16-15', u'A16-24', u'A16-27', u'A16-33', u'A16-34', u'E04-125', u'E04-155', u'E04-48', u'E04-76', u'E04-99', u'E05-100', u'E05-108', u'E05-194', u'E05-200', u'E06-06', u'E06-112', u'E06-160', u'E06-18', u'E06-52', u'E06-97', u'E07-48', u'E07-85', u'E08-119', u'E08-146', u'E08-162', u'E09-08', u'E09-155', u'E09-164', u'E09-35', u'E09-81', u'E09-91', u'E10-110', u'E10-129', u'E10-137', u'E10-150', u'E10-151', u'E10-160', u'E10-179', u'E10-38', u'E10-48', u'E10-56', u'E10-63', u'E10-81', u'E10-83', u'E10-88', u'E11-112', u'E11-124', u'E11-125', u'E11-128', u'E11-139', u'E11-143', u'E11-20', u'E11-41', u'E11-59', u'E11-60', u'E11-70', u'E11-71', u'E11-73', u'E11-75', u'E11-81', u'E11-83', u'E11-84', u'E11-97', u'E12-06', u'E12-110', u'E12-120', u'E12-14', u'E12-32', u'E12-64', u'E12-74', u'E12-85', u'E15-01', u'E15-101', u'E15-106', u'E15-110', u'E15-111', u'E15-125', u'E15-132', u'E15-140', u'E15-30', u'E15-45', u'E15-46', u'E15-92', u'E15-97', u'E16-11', u'E16-110', u'E16-114', u'E16-123', u'E16-128', u'E16-131', u'E16-138', u'E16-16', u'E16-18', u'E16-19', u'E16-21', u'E16-45', u'E16-66', u'E17-05', u'E17-12', u'E17-17', u'E17-21', u'E17-22', u'E17-32', u'E17-36', u'E17-39', u'E17-40', u'E17-47', u'OS00-10', u'OS00-11', u'OS00-14', u'OS00-19', u'OS00-21', u'OS00-40', u'OS00-41', u'OS01-02', u'OS01-06', u'OS01-10', u'OS01-134', u'OS01-152', u'OS01-33', u'OS01-60', u'OS03-300', u'OS03-385', u'OS03-95', u'OS160608', u'OS161018', u'OS86-04', u'OS89-44', u'OS93-24', u'OS96-33', u'OS97-60', u'OS97-61', u'OS99-04', u'OS99-07', u'OS_170124']
@@ -604,25 +609,25 @@ patientID = [u'A01-94', u'A03-138', u'A11-120', u'A12-62', u'A16-15', u'A16-24',
 projectSchema = { 'stainType': stainType, 'patientID': patientID}
 print projectSchema
 
-### Be careful... updating the projectSchema here..
+    Be careful... updating the projectSchema here..
 gc.addMetadataToFolder(metaDataFolder['_id'],{ 'projectSchema': projectSchema} )
-## We may also want to keep other things here like TotalSlides, TotalPatients, TotalStains, whatever as top level parameters
+   We may also want to keep other things here like TotalSlides, TotalPatients, TotalStains, whatever as top level parameters
 
-### Going to now go through the projectSchema and create a virtual folder structure, in this first example
-## I am creating a folder structure based on patientID-->stainType
-## We may also do patientID-->Region-->StainType or other iterations in other examples below
-##Let's get the project by Name
+    Going to now go through the projectSchema and create a virtual folder structure, in this first example
+   I am creating a folder structure based on patientID-->stainType
+   We may also do patientID-->Region-->StainType or other iterations in other examples below
+  Let's get the project by Name
 CollectionName = 'ADRC.VirtualFolderStructure'
 virtualADRCCollUID =  gc.resourceLookup('/collection/%s' % CollectionName)
 
-## First create it by Patient and then by Stain
+   First create it by Patient and then by Stain
 TopLevelFolderName = "ByPatient"
 TLF = gc.createFolder(virtualADRCCollUID['_id'],TopLevelFolderName,parentType='collection',reuseExisting=True)
 
 
-## We now create a folder for every patient, and then a separate folder by stain
+   We now create a folder for every patient, and then a separate folder by stain
 for pt in projectSchema['patientID']:
-    ## Now create a virtual folder for each patient...
+       Now create a virtual folder for each patient...
     virtualPatientFolder  = gc.createFolder(TLF['_id'],pt,description=pt,reuseExisting=True)
 
     for stain in projectSchema['stainType']:
@@ -635,7 +640,7 @@ for pt in projectSchema['patientID']:
                 "virtualItemsQuery": json.dumps({"meta.stainType": stain,  "meta.patientID": pt, 'baseParentId': {"$oid": ADRCCollUID['_id']}})
                  }
         virtualStainFolder =  gc.post("folder",parameters=params)
-    ## CREATE AN ALL FOLDER FOR EVERYTHING
+       CREATE AN ALL FOLDER FOR EVERYTHING
     params = { "parentType": "folder",
            "parentId"  : virtualPatientFolder['_id'],
            "reuseExisting": True,
@@ -645,19 +650,19 @@ for pt in projectSchema['patientID']:
            "virtualItemsQuery": json.dumps({ "meta.patientID": pt})
              }
     anyPtSlide =  gc.post("folder",parameters=params)
-## As a cleanup step, I need to delete virtualFolders that contain 0 virtualItems, as it's annoying
-## alhttp://localhost:8890/notebooks/createADRCVirtualFolderStructure.ipynb#though we could also change the UI to not render them ... TBD
+   As a cleanup step, I need to delete virtualFolders that contain 0 virtualItems, as it's annoying
+   alhttp://localhost:8890/notebooks/createADRCVirtualFolderStructure.ipynb though we could also change the UI to not render them ... TBD
 
 
-#print TLF['_id']
-#print list(gc.listFolder(TLF['_id']))
-#### Let's look for empty folders...
+ print TLF['_id']
+ print list(gc.listFolder(TLF['_id']))
+     Let's look for empty folders...
 virtualPtFolderList =  list( gc.listFolder(TLF['_id'],parentFolderType='folder') )
 
 ptsProcessed = 0
 
 for vpf in virtualPtFolderList:
-    ### Let's now see what's in each of these folders
+        Let's now see what's in each of these folders
     ptsProcessed += 1
 
     ptByStainFolders = gc.listFolder(vpf['_id'])
@@ -665,33 +670,33 @@ for vpf in virtualPtFolderList:
         itemsInCurFolder =  list(gc.listItem(pbsf['_id']))
         print len(itemsInCurFolder),pbsf['name'],vpf['name']
         if len(itemsInCurFolder) == 0:
-            #gc.delete('/folder/%s'%pbsf['_id'])
-            #print "Deleting %s for pt %s which has %d items" % ( pbsf['name'],vpf['name'], len(itemsInCurFolder))
+             gc.delete('/folder/%s'%pbsf['_id'])
+             print "Deleting %s for pt %s which has %d items" % ( pbsf['name'],vpf['name'], len(itemsInCurFolder))
 
 
-# ### Delete the TopLevel Folder if it has no virtual folders in it..
+      Delete the TopLevel Folder if it has no virtual folders in it..
 
-## First create it by Patient and then by Stain
-#### Let's look for empty folders...
+   First create it by Patient and then by Stain
+     Let's look for empty folders...
 virtualPtFolderList =  list( gc.listFolder(TLF['_id'],parentFolderType='folder') )
 
 print virtualPtFolderList
 
-# for vpf in virtualPtFolderList:
-#     print vpf['name']
+  for vpf in virtualPtFolderList:
+      print vpf['name']
 
-# ## We now create a folder for every patient, and then a separate folder by stain
-# for pt in projectSchema['patientID']:
-#     ## Now create a virtual folder for each patient...
-#     virtualPatientFolder  = gc.createFolder(TLF['_id'],pt,description=pt,reuseExisting=True)
+     We now create a folder for every patient, and then a separate folder by stain
+  for pt in projectSchema['patientID']:
+         Now create a virtual folder for each patient...
+      virtualPatientFolder  = gc.createFolder(TLF['_id'],pt,description=pt,reuseExisting=True)
 
 
-## Organize by Region MetaData Key
-## Folder Name is VF.ByRegion
+   Organize by Region MetaData Key
+   Folder Name is VF.ByRegion
 ByRegionFolderID = '5a94567b92ca9a00186a2f4d'
 
 
-#folder?parentType=folder&parentId=5a94567b92ca9a00186a2f4d&name=Cerebellum&description=Cerebellum%20slides&reuseExisting=true&isVirtual=true&virtualItemsQuery=%7B%22meta.brainRegion%22%3A%22Cerebellum%22%7D
+ folder?parentType=folder&parentId=5a94567b92ca9a00186a2f4d&name=Cerebellum&description=Cerebellum%20slides&reuseExisting=true&isVirtual=true&virtualItemsQuery=%7B%22meta.brainRegion%22%3A%22Cerebellum%22%7D
 regionList = ["Amygdala","BasalGanglia","BasalGanglia_NucleusBasalis","Cerebellum","CingulateCortex","FrontalCortex",
 "Hippocampus","InsularCortex","Medulla","OccipitalCortex","ParietalCortex","PeriRolandic_eight","PeriRolandic_seven","Pons","TemporalCortex"]
 
@@ -728,16 +733,16 @@ case 'listItemsInFolder':
 Added on 07/16/2018
 
 def get_collection_id(gc, collection_name):
-    # given a girder client object that is authenticated and a collection name,
-    # returns the id of the collection.
+      given a girder client object that is authenticated and a collection name,
+      returns the id of the collection.
     try:
         return gc.get("resource/lookup?path=collection/%s" % collection_name)['_id']
     except:
         raise ValueError("There is no collection with that name.")
 
 def listResources(gc, endpoint_id, endpoint_type='collection', limit=50000):
-    # given collection/folder name or id, it returns a list of items
-    # under the endpoint recursively.
+      given collection/folder name or id, it returns a list of items
+      under the endpoint recursively.
     try:
         return list(gc.listResource("resource/%s/items?type=%s" % (endpoint_id, endpoint_type), limit=limit))
     except:
@@ -745,9 +750,9 @@ def listResources(gc, endpoint_id, endpoint_type='collection', limit=50000):
 
 def correct_stain(stain, stainTypes = ['Biels','HE','LFB_PAS','Tau','Ubiq', \
                       'aBeta','aSyn','pTDP', 'NF', 'SM', 'Thio']):
-    # given a list of stain types, this functions tries to re-spell the stains metadata tag
-    # in the appropriate spelling (don't want multiple spellings for same stain type).
-    # If after regex resubstitution the stain is not in the list, it returns unknown stain.
+      given a list of stain types, this functions tries to re-spell the stains metadata tag
+      in the appropriate spelling (don't want multiple spellings for same stain type).
+      If after regex resubstitution the stain is not in the list, it returns unknown stain.
     stain = re.sub('(?i)(ab)','aBeta',stain)
     stain = re.sub('(?i)(at8|tau)','Tau',stain)
     stain = re.sub('(?i)(he|h&e)','HE',stain)
@@ -766,8 +771,8 @@ def correct_stain(stain, stainTypes = ['Biels','HE','LFB_PAS','Tau','Ubiq', \
         return 'unknown'
 
 def clean_metadata(metadata):
-    # cleans the metadata to remove unwanted leading and trailing chracters.
-    # Cleans the stain type and block ID.
+      cleans the metadata to remove unwanted leading and trailing chracters.
+      Cleans the stain type and block ID.
     clean_metadata = {}
     for k, v in metadata.iteritems():
         if k == 'stainType':
@@ -827,7 +832,7 @@ def lookupItemByName( girderClient, parentFolderID, itemName):
         itemData = gc.get('/item?folderId=%s&name=%s&limit=50&offset=0&sort=lowerName&sortdir=1' % (parentFolderID,itemName ))
         return itemData
     except:
-        ### no item found
+            no item found
         return False
 
 
@@ -857,25 +862,25 @@ def copySlideToCuratedFolder( girderClient, itemData, metaData, curatedFolderID,
     curatedFolderID: id of the destination folder
     patientID: id of the patient, TOP level folder identifier (e.g. ADRCXX-XX)
     '''
-    #if the slide was bad, metaData was passed as None
+     if the slide was bad, metaData was passed as None
     gc= girderClient
 
-    ## Refactor this to maybe just have it uses those keys in a list or something?
+       Refactor this to maybe just have it uses those keys in a list or something?
     if metaData is None:
-        #Here is the logic for when you want to put the slide into the uknown folder. I need to check if the folder
-        #for this patient exists. It doesn't I should create a subfolder named unknown (similar to how the stain type and
-        #patient folder are made
+         Here is the logic for when you want to put the slide into the uknown folder. I need to check if the folder
+         for this patient exists. It doesn't I should create a subfolder named unknown (similar to how the stain type and
+         patient folder are made
         firstBranchName = patientID
         secondBranchName = 'unknown'
     else:
-        ## This could maybe recurse based on splitting the namingScheme, but may become hard to read
+           This could maybe recurse based on splitting the namingScheme, but may become hard to read
         firstBranchName = patientID
         secondBranchName = metaData['stainType']
 
     firstBranch_FolderID = getFolderID_for_FolderName_in_ParentFolder( gc,firstBranchName,curatedFolderID)
-    ### The parent folder for the second branch is what's returned from the previous staement
+        The parent folder for the second branch is what's returned from the previous staement
     secondBranch_FolderID = getFolderID_for_FolderName_in_ParentFolder( gc,secondBranchName,firstBranch_FolderID)
-    ### Check if item already exists in the targetFolder
+        Check if item already exists in the targetFolder
     if not lookupItemByName( gc, secondBranch_FolderID, itemData['name']):
         print "Moving the folder to %s / %s " %  ( patientID, secondBranchName )
         try:
@@ -908,7 +913,7 @@ def validateSlideMetaData( slideMetaData, validStainTypes ):
     if not slideMetaData['patientID']:
          errors.append(('InvalidPatientID',slideMetaData['patientID']))
 
-    if len(slideMetaData['blockID']) > 4: #correction from DG, previously !=2
+    if len(slideMetaData['blockID']) > 4:  correction from DG, previously !=2
          errors.append(('InvalidBlockID',slideMetaData['blockID']))
 
 
@@ -941,15 +946,15 @@ def create_curated_folder(girderClient, FolderToCurate_ID, TargetFolder_ID, stai
     SlidesThatFailed = []
     allerrors = []
 
-    for folder in gc.listFolder(FolderToCurate_ID): #list all folders, one level down from collection
+    for folder in gc.listFolder(FolderToCurate_ID):  list all folders, one level down from collection
         if folder['name'] not in ommit:
-            #the folders also have the patient ID, so could get these via regex to deal with the unknown cases
-            patientID = folder['name'] #from folder name, NOT metadata
+             the folders also have the patient ID, so could get these via regex to deal with the unknown cases
+            patientID = folder['name']  from folder name, NOT metadata
 
-            curPatientData = recurseGetItems(gc,folder['_id']) #get all the slides in each folder
-            for cpd in curPatientData: #for each slide
-                if cpd['name'].endswith(('ndpi','svs')) : #these are the valid slides, so for each slide
-                    ### let's figure out what metadata keys we need in order to be happy about the slide
+            curPatientData = recurseGetItems(gc,folder['_id'])  get all the slides in each folder
+            for cpd in curPatientData:  for each slide
+                if cpd['name'].endswith(('ndpi','svs')) :  these are the valid slides, so for each slide
+                        let's figure out what metadata keys we need in order to be happy about the slide
                     try:
                         (metaDataGood,errors) =  validateSlideMetaData( cpd['meta'] , stain_Types)
                         if len(errors) != 0:
@@ -957,7 +962,7 @@ def create_curated_folder(girderClient, FolderToCurate_ID, TargetFolder_ID, stai
                     except:
                         print "No metadata for", cpd['name']
                         continue
-                    if metaDataGood: #only true if it passed the above
+                    if metaDataGood:  only true if it passed the above
                         copySlideToCuratedFolder(gc, cpd, cpd['meta'], TargetFolder_ID, patientID)
                     else:
                         if make_unknown:
@@ -987,7 +992,7 @@ def recurseGetItems(client, folderId, parentType='folder', printLog=False):
 
     if parentType=='collection':
         topLevelFolders = client.listFolder(folderId, parentFolderType=parentType)
-        slideDict = {} #Dict where the top level key is the folder name, and below are the slides in that folder
+        slideDict = {}  Dict where the top level key is the folder name, and below are the slides in that folder
 
         for tlf in topLevelFolders:
             slidesInFolder = recurseGetItems(client, tlf['_id'])
@@ -1008,7 +1013,7 @@ def recurseGetItems(client, folderId, parentType='folder', printLog=False):
 def recurseGetResource(client, parentId, resourceType, parentType='folder'):
 
 
-    ### The recursion logic is broken here...
+        The recursion logic is broken here...
     """
     Recurse below the parent(indicated by parentId) and generate a list of all
     resources of type resourceType that existed under the parent.
@@ -1023,19 +1028,19 @@ def recurseGetResource(client, parentId, resourceType, parentType='folder'):
     :returns: A list of all folders or items below parentId.
     :rtype: list of dict
     """
-    # now get all folders
+      now get all folders
     resourceList = []
 
     try:
         folders = client.listFolder(parentId, parentFolderType=parentType)
     except girder_client.HttpError as err:
         print err
-#        print HttpError(err)
+         print HttpError(err)
         return []
 
-    #The line below is commented and moved below because this is an iterator and
-    #it consume the list only once, you will ending extending resourceList to None
-    #folderIdList = getField(folders, '_id')
+     The line below is commented and moved below because this is an iterator and
+     it consume the list only once, you will ending extending resourceList to None
+     folderIdList = getField(folders, '_id')
 
     if resourceType is 'item' and parentType is not 'collection':
         try:
@@ -1044,7 +1049,7 @@ def recurseGetResource(client, parentId, resourceType, parentType='folder'):
         except girder_client.HttpError as err:
             print "HTTP Error thrown"
 
-#            print HttpError(err)
+             print HttpError(err)
             print err
             return []
     elif resourceType is 'folder':
@@ -1052,12 +1057,12 @@ def recurseGetResource(client, parentId, resourceType, parentType='folder'):
     elif resourceType is not 'item' or resourceType is not 'folder':
         raise Exception('Invalid resourceType: %s' % resourceType)
 
-    #folderIdList is an iterator and can only be consumed once. Do not move it up in the function
+     folderIdList is an iterator and can only be consumed once. Do not move it up in the function
     folderIdList = getField(folders, '_id')
 
-    ### The recursion does NOT work if you start with a collection.. probably iwll work if it's a folder.
+        The recursion does NOT work if you start with a collection.. probably iwll work if it's a folder.
     for folderId in folderIdList:
-        #if re
+         if re
         resourceList.extend(recurseGetResource(client, folderId, resourceType))
 
     return resourceList
