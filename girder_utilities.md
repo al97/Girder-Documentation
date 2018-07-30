@@ -314,7 +314,7 @@ len(air_no_slides_lbd)
 ```
 
 count all the slides that have the AirBubble set to No, aka slides have no AirBubble, working
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.44.39%20AM.png)
 
 
 ```
@@ -329,9 +329,9 @@ for sld in gc.listItem(sourceFldID):
 
 len(bld_yes_slides_lbd)
 ```
-count all the slides that have the Blood set to Yes, aka slides have blood. Working
-![alt text]()
 
+count all the slides that have the Blood set to Yes, aka slides have blood. Working
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.45.04%20AM.png)
 
 
 ```
@@ -348,7 +348,8 @@ len(bld_no_slides_lbd)
 ```
 
 count all the slides that have the Blood set to No, aka slides have no Blood. working
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.45.28%20AM.png)
+
 
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
@@ -364,7 +365,8 @@ len(ink_yes_slides_lbd)
 ```
 
 get all the slides that have the Ink set to Yes, aka slides have Ink. working
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.45.44%20AM.png)
+
 
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
@@ -381,7 +383,7 @@ len(ink_no_slides_lbd)
 
 get all the slides that have the Ink set to No, aka slides have no Ink  
 working
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.49.14%20AM.png)
 
 
 ```
@@ -399,7 +401,8 @@ len(sha_yes_slides_lbd)
 
 get all the slides that have the Sharpie set to Yes, aka slides have Sharpie
 if there are no slides marked as Sharpie 0 - working
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.47.36%20AM.png)
+
 
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
@@ -416,7 +419,7 @@ len(sha_no_slides_lbd)
 
 get all the slides that have the Sharpie set to No, aka slides have no Sharpie
 0- working
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.48.22%20AM.png)
 
 
 ```
@@ -432,7 +435,7 @@ print("Total- No  Slides: "+ str(len(slides_lbd)))
 ```
 
 prints every count we've seen thus far in our code.
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.49.43%20AM.png)
 
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
