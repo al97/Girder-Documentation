@@ -254,7 +254,8 @@ for slide in gc.listItem(folderID):
 ```
 
 Output:
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.40.02%20AM.png)
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.40.10%20AM.png)
 
 ---------------------------------------------
 labeled images download
@@ -279,7 +280,7 @@ for sld in gc.listItem(sourceFldID):
 ```
 
 get all the slides that have the label flag, aka they have been marked up with ground truth. No output for this one, used for next blocks of code
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.40.54%20AM.png)
 
 
 ```
@@ -295,8 +296,8 @@ for sld in gc.listItem(sourceFldID):
 len(air_yes_slides_lbd)
 ```
 
-get all the slides that have the AirBubble set to Yes, aka slides have AirBubble
-![alt text]()
+count all the slides that have the AirBubble set to Yes, aka slides have AirBubble, working
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.40.59%20AM.png)
 
 
 ```
@@ -312,7 +313,8 @@ for sld in gc.listItem(sourceFldID):
 len(air_no_slides_lbd)
 ```
 
-get all the slides that have the AirBubble set to No, aka slides have no AirBubble
+count all the slides that have the AirBubble set to No, aka slides have no AirBubble, working
+![alt text]()
 
 
 ```
@@ -327,8 +329,8 @@ for sld in gc.listItem(sourceFldID):
 
 len(bld_yes_slides_lbd)
 ```
-get all the slides that have the Blood set to Yes, aka slides have Blood
-working
+count all the slides that have the Blood set to Yes, aka slides have blood. Working
+![alt text]()
 
 
 
@@ -345,7 +347,8 @@ for sld in gc.listItem(sourceFldID):
 len(bld_no_slides_lbd)
 ```
 
-get all the slides that have the Blood set to No, aka slides have no Blood
+count all the slides that have the Blood set to No, aka slides have no Blood. working
+![alt text]()
 
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
@@ -360,9 +363,8 @@ for sld in gc.listItem(sourceFldID):
 len(ink_yes_slides_lbd)
 ```
 
-working
-get all the slides that have the Ink set to Yes, aka slides have Ink
-
+get all the slides that have the Ink set to Yes, aka slides have Ink. working
+![alt text]()
 
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
@@ -379,6 +381,7 @@ len(ink_no_slides_lbd)
 
 get all the slides that have the Ink set to No, aka slides have no Ink  
 working
+![alt text]()
 
 
 ```
@@ -395,8 +398,8 @@ len(sha_yes_slides_lbd)
 ```
 
 get all the slides that have the Sharpie set to Yes, aka slides have Sharpie
-there are no slides marked as Sharpie 0 - working
-
+if there are no slides marked as Sharpie 0 - working
+![alt text]()
 
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
@@ -413,6 +416,8 @@ len(sha_no_slides_lbd)
 
 get all the slides that have the Sharpie set to No, aka slides have no Sharpie
 0- working
+![alt text]()
+
 
 ```
 print("  of Sharpie   - Yes Slides: "+ str(len(sha_yes_slides_lbd)))
@@ -426,6 +431,8 @@ print("  of Ink       - No  Slides: "+ str(len(ink_no_slides_lbd)))
 print("Total- No  Slides: "+ str(len(slides_lbd)))
 ```
 
+prints every count we've seen thus far in our code.
+![alt text]()
 
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
