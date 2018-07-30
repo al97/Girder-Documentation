@@ -12,6 +12,7 @@ API_URL = "http://digitalslidearchive.emory.edu:8080/api/v1"
 gc = girder_client.GirderClient(apiUrl=API_URL)
 gc.authenticate(interactive=True)
 ```
+
 Logs you into Girder - prompts for login and password:
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.48.45%20PM.png)
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.48.55%20PM.png)
@@ -55,12 +56,13 @@ class LinePrinter():
         sys.stdout.flush()
 ```
 
-Result: does nothing, copy and pasted in Jupyter Notebooks but no output whatsoever
+Result: it's a function that'll be used throughout the code. So it does nothing on its own
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.54.12%20PM.png)
 
 
 Copies all slides in main and all its subfolders, source:gbmFldID, dest:rajsFldId
-works as intended
+works as intended - output reflects its copying and pasting. (1) at the end of the file
+![alt text]()
 
 ```
 rajsFldId = '5b046b8192ca9a001abb1c66'
@@ -83,6 +85,7 @@ for sld in sldList:
       LinePrinter("Slide %s of %s copied." % (count, length))
 ```
 
+
 Counts the slide duplicates, works as intended:
 ```
 rajsFldId = '5ae351e792ca9a0020d95e50'
@@ -93,8 +96,8 @@ for sld in gc.getResource('resource/' + rajsFldId + '/items?type=folder&limit=10
 print count
 ```
 
-   delete the duplicated slides
-  works as intended
+delete the duplicated slides
+works as intended
 
 ```
 rajsFldId = '5ae351e792ca9a0020d95e50'
