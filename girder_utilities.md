@@ -706,7 +706,8 @@ def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parent
 No Output
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.26.30%20PM.png)
 ---------------------------------------------------------------------------------------------
-   To create Virtual Folder Structure
+
+To create Virtual Folder Structure
 
 ```
 import girder_client
@@ -735,6 +736,9 @@ for i in gc.listItem(topfolder):
     pprint(i)
     break
 ```
+
+Output:
+![alt text]()
 -----------------------------------------
 
 create Virtual Folder Structure...
@@ -749,21 +753,21 @@ API_URL = "http://adrc.digitalslidearchive.emory.edu:8080/api/v1"
 gc = girder_client.GirderClient(apiUrl=API_URL)
 gc.authenticate(interactive=True)
 
-  Let's get the project by Name
+ # Let's get the project by Name
 CollectionName = 'ADRC'
 ADRCCollUID =  gc.resourceLookup('/collection/%s' % CollectionName)
 
-   Let's also get the projectMetadata folder for this collection
+ #  Let's also get the projectMetadata folder for this collection
 metaDataFolder =  list(gc.listFolder(ADRCCollUID['_id'],parentFolderType='collection',name='.projectMetaData'))[0]
 pprint.pprint(metaDataFolder)
 
-     For the first iteration, I want to bootstrap this with the list of patient folders we have already created
-  patientFolder = gc.listFolder('5a2039e592ca9a0018254053')
+  #   For the first iteration, I want to bootstrap this with the list of patient folders we have already created
+patientFolder = gc.listFolder('5a2039e592ca9a0018254053')
 
-  patientIDList = [x['name'] for x in patientFolder]
-  print patientIDList
+patientIDList = [x['name'] for x in patientFolder]
+print patientIDList
 
-    Be Careful you don't overwrite the projectScheme with whatever you manually edit here... unless you mean to do it
+  #  Be Careful you don't overwrite the projectScheme with whatever you manually edit here... unless you mean to do it
 
 stainType = ["TDP","TAU","AB","SYN","UBIQ","BIEL","HE","SM","THIO","LFB","NF"]
 patientID = [u'A01-94', u'A03-138', u'A11-120', u'A12-62', u'A16-15', u'A16-24', u'A16-27', u'A16-33', u'A16-34', u'E04-125', u'E04-155', u'E04-48', u'E04-76', u'E04-99', u'E05-100', u'E05-108', u'E05-194', u'E05-200', u'E06-06', u'E06-112', u'E06-160', u'E06-18', u'E06-52', u'E06-97', u'E07-48', u'E07-85', u'E08-119', u'E08-146', u'E08-162', u'E09-08', u'E09-155', u'E09-164', u'E09-35', u'E09-81', u'E09-91', u'E10-110', u'E10-129', u'E10-137', u'E10-150', u'E10-151', u'E10-160', u'E10-179', u'E10-38', u'E10-48', u'E10-56', u'E10-63', u'E10-81', u'E10-83', u'E10-88', u'E11-112', u'E11-124', u'E11-125', u'E11-128', u'E11-139', u'E11-143', u'E11-20', u'E11-41', u'E11-59', u'E11-60', u'E11-70', u'E11-71', u'E11-73', u'E11-75', u'E11-81', u'E11-83', u'E11-84', u'E11-97', u'E12-06', u'E12-110', u'E12-120', u'E12-14', u'E12-32', u'E12-64', u'E12-74', u'E12-85', u'E15-01', u'E15-101', u'E15-106', u'E15-110', u'E15-111', u'E15-125', u'E15-132', u'E15-140', u'E15-30', u'E15-45', u'E15-46', u'E15-92', u'E15-97', u'E16-11', u'E16-110', u'E16-114', u'E16-123', u'E16-128', u'E16-131', u'E16-138', u'E16-16', u'E16-18', u'E16-19', u'E16-21', u'E16-45', u'E16-66', u'E17-05', u'E17-12', u'E17-17', u'E17-21', u'E17-22', u'E17-32', u'E17-36', u'E17-39', u'E17-40', u'E17-47', u'OS00-10', u'OS00-11', u'OS00-14', u'OS00-19', u'OS00-21', u'OS00-40', u'OS00-41', u'OS01-02', u'OS01-06', u'OS01-10', u'OS01-134', u'OS01-152', u'OS01-33', u'OS01-60', u'OS03-300', u'OS03-385', u'OS03-95', u'OS160608', u'OS161018', u'OS86-04', u'OS89-44', u'OS93-24', u'OS96-33', u'OS97-60', u'OS97-61', u'OS99-04', u'OS99-07', u'OS_170124']
@@ -771,25 +775,25 @@ patientID = [u'A01-94', u'A03-138', u'A11-120', u'A12-62', u'A16-15', u'A16-24',
 projectSchema = { 'stainType': stainType, 'patientID': patientID}
 print projectSchema
 
-    Be careful... updating the projectSchema here..
+  #  Be careful... updating the projectSchema here..
 gc.addMetadataToFolder(metaDataFolder['_id'],{ 'projectSchema': projectSchema} )
-   We may also want to keep other things here like TotalSlides, TotalPatients, TotalStains, whatever as top level parameters
+  # We may also want to keep other things here like TotalSlides, TotalPatients, TotalStains, whatever as top level parameters
 
-    Going to now go through the projectSchema and create a virtual folder structure, in this first example
-   I am creating a folder structure based on patientID-->stainType
-   We may also do patientID-->Region-->StainType or other iterations in other examples below
-  Let's get the project by Name
+  # Going to now go through the projectSchema and create a virtual folder structure, in this first example
+  # I am creating a folder structure based on patientID-->stainType
+  # We may also do patientID-->Region-->StainType or other iterations in other examples below
+  # Let's get the project by Name
 CollectionName = 'ADRC.VirtualFolderStructure'
 virtualADRCCollUID =  gc.resourceLookup('/collection/%s' % CollectionName)
 
-   First create it by Patient and then by Stain
+  # First create it by Patient and then by Stain
 TopLevelFolderName = "ByPatient"
 TLF = gc.createFolder(virtualADRCCollUID['_id'],TopLevelFolderName,parentType='collection',reuseExisting=True)
 
 
-   We now create a folder for every patient, and then a separate folder by stain
+  # We now create a folder for every patient, and then a separate folder by stain
 for pt in projectSchema['patientID']:
-       Now create a virtual folder for each patient...
+    #   Now create a virtual folder for each patient...
     virtualPatientFolder  = gc.createFolder(TLF['_id'],pt,description=pt,reuseExisting=True)
 
     for stain in projectSchema['stainType']:
@@ -802,7 +806,7 @@ for pt in projectSchema['patientID']:
                 "virtualItemsQuery": json.dumps({"meta.stainType": stain,  "meta.patientID": pt, 'baseParentId': {"$oid": ADRCCollUID['_id']}})
                  }
         virtualStainFolder =  gc.post("folder",parameters=params)
-       CREATE AN ALL FOLDER FOR EVERYTHING
+     #  CREATE AN ALL FOLDER FOR EVERYTHING
     params = { "parentType": "folder",
            "parentId"  : virtualPatientFolder['_id'],
            "reuseExisting": True,
@@ -812,19 +816,19 @@ for pt in projectSchema['patientID']:
            "virtualItemsQuery": json.dumps({ "meta.patientID": pt})
              }
     anyPtSlide =  gc.post("folder",parameters=params)
-   As a cleanup step, I need to delete virtualFolders that contain 0 virtualItems, as it's annoying
-   alhttp://localhost:8890/notebooks/createADRCVirtualFolderStructure.ipynb though we could also change the UI to not render them ... TBD
+  # As a cleanup step, I need to delete virtualFolders that contain 0 virtualItems, as it's annoying
+  # alhttp://localhost:8890/notebooks/createADRCVirtualFolderStructure.ipynb though we could also change the UI to not render them ... TBD
 
 
- print TLF['_id']
- print list(gc.listFolder(TLF['_id']))
-     Let's look for empty folders...
+print TLF['_id']
+print list(gc.listFolder(TLF['_id']))
+   #  Let's look for empty folders...
 virtualPtFolderList =  list( gc.listFolder(TLF['_id'],parentFolderType='folder') )
 
 ptsProcessed = 0
 
 for vpf in virtualPtFolderList:
-        Let's now see what's in each of these folders
+     #   Let's now see what's in each of these folders
     ptsProcessed += 1
 
     ptByStainFolders = gc.listFolder(vpf['_id'])
@@ -836,10 +840,10 @@ for vpf in virtualPtFolderList:
              print "Deleting %s for pt %s which has %d items" % ( pbsf['name'],vpf['name'], len(itemsInCurFolder))
 
 
-      Delete the TopLevel Folder if it has no virtual folders in it..
+    #  Delete the TopLevel Folder if it has no virtual folders in it..
 
-   First create it by Patient and then by Stain
-     Let's look for empty folders...
+  # First create it by Patient and then by Stain
+  #   Let's look for empty folders...
 virtualPtFolderList =  list( gc.listFolder(TLF['_id'],parentFolderType='folder') )
 
 print virtualPtFolderList
@@ -847,14 +851,14 @@ print virtualPtFolderList
   for vpf in virtualPtFolderList:
       print vpf['name']
 
-     We now create a folder for every patient, and then a separate folder by stain
+   #  We now create a folder for every patient, and then a separate folder by stain
   for pt in projectSchema['patientID']:
-         Now create a virtual folder for each patient...
+    #     Now create a virtual folder for each patient...
       virtualPatientFolder  = gc.createFolder(TLF['_id'],pt,description=pt,reuseExisting=True)
 
 
-   Organize by Region MetaData Key
-   Folder Name is VF.ByRegion
+  # Organize by Region MetaData Key
+  # Folder Name is VF.ByRegion
 ByRegionFolderID = '5a94567b92ca9a00186a2f4d'
 
 
@@ -870,13 +874,20 @@ for regionName in regionList:
     print regionName
     gc.post(postRoute_wp)
 ```
+
+Output:
+![alt text]()
 --------------------------------------------------
+
+These next few all have invalid syntax as their error.
 ```
 case 'getCollURL':
       url = config.BASE_URL + "/resource/lookup?path=collection/" + config.COLLECTION_NAME;
       promise = makePromise(url);
       break;
 ```
+Output:
+![alt text]()
 
 ```
 case 'listFoldersInCollection':
@@ -884,6 +895,9 @@ case 'listFoldersInCollection':
       promise = makePromise(url);
       break;
 ```
+
+Output:
+![alt text]()
 
 ```
 case 'listFoldersinFolder':
@@ -893,6 +907,9 @@ case 'listFoldersinFolder':
                 //adrc.digitalslidearchive.emory.edu:8080/api/v1/item?folderId=5ad11d6a92ca9a001adee5b3&limit=50&sort=lowerName&sortdir=1
 ```
 
+Output:
+![alt text]()
+
 ```
 case 'listItemsInFolder':
       url = config.BASE_URL + "/item?folderId=" + girderObjectID + "&limit=5000"
@@ -900,6 +917,10 @@ case 'listItemsInFolder':
       promise = makePromise(url);
       break;
 ```
+
+Output:
+![alt text]()
+
 ------------------------------------------
 
 Added on 07/16/2018
@@ -972,17 +993,6 @@ class LinePrinter():
         sys.stdout.write("\r\x1b[K"+data.__str__())
         sys.stdout.flush()
 ```
-
-"""
-Ashwin
-how to copy an item to folder by python
-Must define folderID separately
-"""
-
-folderId='5b4cc18692ca9a001ae72aff'
-gc.post("item/" + itemID + '/copy', {"folderId": folderID})
-
-![alt text](get_1 -- send to Albert)
 
 
 
