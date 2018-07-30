@@ -126,7 +126,7 @@ print count
 ```
 count total number of slides in the folder
 works as intended
-
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.31.00%20AM.png)
 -------------------------------------------------------------------
 
 Getting the sample count for each of the classes¶
