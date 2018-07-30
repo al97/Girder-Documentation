@@ -60,9 +60,6 @@ Result: it's a function that'll be used throughout the code. So it does nothing 
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.54.12%20PM.png)
 
 
-Copies all slides in main and all its subfolders, source:gbmFldID, dest:rajsFldId
-works as intended - output reflects its copying and pasting. (1) at the end of the file
-![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.22.57%20AM.png)
 
 ```
 rajsFldId = '5b046b8192ca9a001abb1c66'
@@ -85,8 +82,11 @@ for sld in sldList:
       LinePrinter("Slide %s of %s copied." % (count, length))
 ```
 
+Copies all slides in main and all its subfolders, source:gbmFldID, dest:rajsFldId
+works as intended - output reflects its copying and pasting. (1) at the end of the file
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.22.57%20AM.png)
 
-Counts the slide duplicates, works as intended:
+
 ```
 rajsFldId = '5ae351e792ca9a0020d95e50'
 count =0
@@ -95,6 +95,8 @@ for sld in gc.getResource('resource/' + rajsFldId + '/items?type=folder&limit=10
         count+=1
 print count
 ```
+Counts the slide duplicates, works as intended:
+
 
 delete the duplicated slides
 works as intended
