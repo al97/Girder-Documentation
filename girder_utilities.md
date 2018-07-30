@@ -455,7 +455,7 @@ len(airbld_yes_slides_lbd)
 
 get all the slides that have the AirBubble and  Blood set to Yes, aka slides have AirBubble and Blood
 works - prints out all the slides names and then the number of them.
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.54.50%20AM.png)
 
 
 ```
@@ -473,7 +473,7 @@ len(airink_yes_slides_lbd)
 
 get all the slides that have the AirBubble and  Ink set to Yes , aka slides have AirBubble and Ink
 working
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.55.56%20AM.png)
 
 
 ```
@@ -491,7 +491,7 @@ len(bldink_yes_slides_lbd)
 
 get all the slides that have the Blood and  Ink set to Yes , aka slides have Blood and Ink
 working
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.57.14%20AM.png)
 
 
 ```
@@ -510,7 +510,8 @@ len(all_yes_slides_lbd)
 
 get all the slides that all three markings
 working
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.57.31%20AM.png)
+
 
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
@@ -527,7 +528,7 @@ len(all_no_slides_lbd)
 ```
 
 get all the slides that have none of the three markings
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.57.52%20AM.png)
 
 -------------------------------------------------------------
   girder_utils - Girder Utilities
