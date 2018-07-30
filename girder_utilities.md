@@ -179,10 +179,10 @@ print 'There are %s labeled slides.' % len(slidesTagged)
 get set of slides that have the tags of interest
 works as intended
 
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.33.40%20AM.png)
 
 
-  get the count for all the possible classes (permuation of tag values)
+
 ```
 ftLabel = ['Yes','No']
 classes = [list(y for y in x) for x in itertools.product(ftLabel, ftLabel, ftLabel)]
@@ -195,8 +195,11 @@ for sld in slidesTagged:
             continue
 ```
 
-  use pandas do display the results of number of slides for each class
-  works as intended
+get the count for all the possible classes (permuation of tag values). No output, used for the next block of code.
+
+![alt text]()
+
+
 ```
 data = np.hstack((np.array([range(len(classes))]).T, np.array(classes), np.array([counts]).T))
 titles = np.hstack((np.array(['Class  ']), np.array(tags), np.array(['Count'])))
@@ -204,11 +207,11 @@ df = pd.DataFrame(data)
 df = pd.DataFrame(data, columns=titles)
 display(HTML(df.to_html(index=False)))
 ```
+use pandas to display the results of number of slides for each class, works as intended
 
+![alt text]()
 --------------------------------------------------------------------------------
-  Albert
-  works, but there's a slight problem with MAC OSX file path readings
-  by slight problem I mean that it doesn't work lol
+
 
 Download the images from the Girder
 
