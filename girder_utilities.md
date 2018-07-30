@@ -95,6 +95,7 @@ for sld in gc.getResource('resource/' + rajsFldId + '/items?type=folder&limit=10
         count+=1
 print count
 ```
+
 Counts the slide duplicates, works as intended, but output simply indicates how many copies there are.
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.28.00%20AM.png)
 
@@ -112,6 +113,7 @@ print count
 ```
 delete the duplicated slides, but only indicates number of slides deleted.
 works as intended
+
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.29.31%20AM.png)
 
 
@@ -124,8 +126,9 @@ for sld in gc.getResource('resource/' + rajsFldId + '/items?type=folder&limit=10
 
 print count
 ```
-count total number of slides in the folder
-works as intended
+
+count total number of slides in the folder, works as intended
+
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.31.00%20AM.png)
 -------------------------------------------------------------------
 
@@ -162,8 +165,7 @@ sourceFldId = '5ae351e792ca9a0020d95e50'
        7         slidesTagged.append(sld)
  KeyError: 'meta'
 
-  get set of slides that have the tags of interest
-  works as intended
+
 ```
 slidesTagged = []
 tags = ['AirBubble', 'Blood', 'Ink']
@@ -173,6 +175,12 @@ for sld in gc.listItem(sourceFldId):
         slidesTagged.append(sld)
 print 'There are %s labeled slides.' % len(slidesTagged)
 ```
+
+get set of slides that have the tags of interest
+works as intended
+
+![alt text]()
+
 
   get the count for all the possible classes (permuation of tag values)
 ```
