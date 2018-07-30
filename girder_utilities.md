@@ -550,7 +550,7 @@ def recurseGetItems(client, folderId):
 ```
 
 No output
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.23.29%20PM.png)
 
 ```
 def recurseGetResource(client, parentId, resourceType, parentType='folder'):
@@ -612,7 +612,8 @@ def recurseGetResource(client, parentId, resourceType, parentType='folder'):
 ```
 
 No Output
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.23.39%20PM.png)
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.23.48%20PM.png)
 
 
 ```
@@ -621,7 +622,7 @@ def getField(data, strKey):
 ```
 
 No Output
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.24.30%20PM.png)
 
 ```
 def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parentFolderID, parentType='folder'):
@@ -639,10 +640,10 @@ def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parent
 ```
 
 No Output
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.24.55%20PM.png)
 
 ```
-def lookupItemByName( girderClient, parentFolderID, itemName):
+def lookupItemByName(girderClient, parentFolderID, itemName):
     """Sees if an item of FOO already exists in folder BAR"""
     gc = girderClient
     try:
@@ -656,7 +657,7 @@ def lookupItemByName( girderClient, parentFolderID, itemName):
 ```
 
 No output
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.25.24%20PM.png)
 
 
 ```
@@ -685,7 +686,7 @@ def copySlideToCuratedFolder( girderClient, itemData, metaData, namingScheme, cu
 ```
 
 No Output
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.25.51%20PM.png)
 
 ```
 def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parentFolderID, parentType='folder'):
@@ -703,7 +704,7 @@ def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parent
 ```
 
 No Output
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.26.30%20PM.png)
 ---------------------------------------------------------------------------------------------
    To create Virtual Folder Structure
 
