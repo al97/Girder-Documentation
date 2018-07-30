@@ -62,7 +62,7 @@ Result: it's a function that'll be used throughout the code. So it does nothing 
 
 Copies all slides in main and all its subfolders, source:gbmFldID, dest:rajsFldId
 works as intended - output reflects its copying and pasting. (1) at the end of the file
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.22.57%20AM.png)
 
 ```
 rajsFldId = '5b046b8192ca9a001abb1c66'
