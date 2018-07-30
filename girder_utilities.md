@@ -531,7 +531,8 @@ get all the slides that have none of the three markings
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.57.52%20AM.png)
 
 -------------------------------------------------------------
-  girder_utils - Girder Utilities
+girder_utils - Girder Utilities
+
 ```
 import girder_client
 import HttpError
@@ -548,11 +549,14 @@ def recurseGetItems(client, folderId):
     return items
 ```
 
+No output
+![alt text]()
+
 ```
 def recurseGetResource(client, parentId, resourceType, parentType='folder'):
 
 
-        The recursion logic is broken here...
+        #The recursion logic is broken here...
     """
     Recurse below the parent(indicated by parentId) and generate a list of all
     resources of type resourceType that existed under the parent.
@@ -568,19 +572,19 @@ def recurseGetResource(client, parentId, resourceType, parentType='folder'):
     :returns: A list of all folders or items below parentId.
     :rtype: list of dict
     """
-      now get all folders
+      #now get all folders
     resourceList = []
 
     try:
         folders = client.listFolder(parentId, parentFolderType=parentType)
     except girder_client.HttpError as err:
         print err
-         print HttpError(err)
+        print HttpError(err)
         return []
 
-     The line below is commented and moved below because this is an iterator and
-     it consume the list only once, you will ending extending resourceList to None
-     folderIdList = getField(folders, '_id')
+     #The line below is commented and moved below because this is an iterator and
+     #it consume the list only once, you will ending extending resourceList to None
+    folderIdList = getField(folders, '_id')
 
     if resourceType is 'item' and parentType is not 'collection':
         try:
@@ -589,7 +593,7 @@ def recurseGetResource(client, parentId, resourceType, parentType='folder'):
         except girder_client.HttpError as err:
             print "HTTP Error thrown"
 
-             print HttpError(err)
+            print HttpError(err)
             print err
             return []
     elif resourceType is 'folder':
@@ -597,21 +601,27 @@ def recurseGetResource(client, parentId, resourceType, parentType='folder'):
     elif resourceType is not 'item' or resourceType is not 'folder':
         raise Exception('Invalid resourceType: %s' % resourceType)
 
-     folderIdList is an iterator and can only be consumed once. Do not move it up in the function
+     #folderIdList is an iterator and can only be consumed once. Do not move it up in the function
     folderIdList = getField(folders, '_id')
 
-        The recursion does NOT work if you start with a collection.. probably iwll work if it's a folder.
+        #The recursion does NOT work if you start with a collection.. probably iwll work if it's a folder.
     for folderId in folderIdList:
-         if re
         resourceList.extend(recurseGetResource(client, folderId, resourceType))
 
     return resourceList
 ```
 
+No Output
+![alt text]()
+
+
 ```
 def getField(data, strKey):
     return [i[strKey] for i in data]
 ```
+
+No Output
+![alt text]()
 
 ```
 def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parentFolderID, parentType='folder'):
@@ -628,6 +638,9 @@ def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parent
     return folderData['_id']
 ```
 
+No Output
+![alt text]()
+
 ```
 def lookupItemByName( girderClient, parentFolderID, itemName):
     """Sees if an item of FOO already exists in folder BAR"""
@@ -635,12 +648,16 @@ def lookupItemByName( girderClient, parentFolderID, itemName):
     try:
         itemData = gc.get('/item?folderId=%s&name=%s&limit=50&offset=0&sort=lowerName&sortdir=1' % (parentFolderID,itemName ))
         return itemData
-         print itemData
+        print itemData
     except:
          print "Found no item data"
-            no item found
-        return False
+            #no item found
+    return False
 ```
+
+No output
+![alt text]()
+
 
 ```
 def copySlideToCuratedFolder( girderClient, itemData, metaData, namingScheme, curatedFolderID ):
@@ -648,16 +665,16 @@ def copySlideToCuratedFolder( girderClient, itemData, metaData, namingScheme, cu
 
     gc= girderClient
 
-       Refactor this to maybe just have it uses those keys in a list or something?
+       #Refactor this to maybe just have it uses those keys in a list or something?
     if  namingScheme == 'patientID_stainType':
-           This could maybe recurse based on splitting the namingScheme, but may become hard to read
+           #This could maybe recurse based on splitting the namingScheme, but may become hard to read
         firstBranchName = metaData['patientID']
         secondBranchName = metaData['stainType']
         firstBranch_FolderID = getFolderID_for_FolderName_in_ParentFolder( gc,firstBranchName,curatedFolderID)
-            The parent folder for the second branch is what's returned from the previous staement
+           # The parent folder for the second branch is what's returned from the previous staement
         secondBranch_FolderID = getFolderID_for_FolderName_in_ParentFolder( gc,secondBranchName,firstBranch_FolderID)
 
-            Check if item already exists in the targetFolder
+           # Check if item already exists in the targetFolder
         if not lookupItemByName( gc, secondBranch_FolderID, itemData['name']):
             print "Moving the folder to %s / %s " %  ( metaData['patientID'], metaData['stainType'] )
             try:
@@ -667,6 +684,9 @@ def copySlideToCuratedFolder( girderClient, itemData, metaData, namingScheme, cu
                 pass
 ```
 
+No Output
+![alt text]()
+
 ```
 def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parentFolderID, parentType='folder'):
     """Since a folder name may (or may not) be unique across a collection, or across girder
@@ -681,6 +701,9 @@ def getFolderID_for_FolderName_in_ParentFolder( girderClient, folderName, parent
 
     return folderData['_id']
 ```
+
+No Output
+![alt text]()
 ---------------------------------------------------------------------------------------------
    To create Virtual Folder Structure
 
