@@ -738,7 +738,7 @@ for i in gc.listItem(topfolder):
 ```
 
 Output:
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.29.43%20PM.png)
 -----------------------------------------
 
 create Virtual Folder Structure...
@@ -876,7 +876,11 @@ for regionName in regionList:
 ```
 
 Output:
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.36.08%20PM.png)
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.36.19%20PM.png)
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.36.29%20PM.png)
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.36.37%20PM.png)
+
 --------------------------------------------------
 
 These next few all have invalid syntax as their error.
@@ -887,7 +891,7 @@ case 'getCollURL':
       break;
 ```
 Output:
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.37.01%20PM.png)
 
 ```
 case 'listFoldersInCollection':
@@ -897,7 +901,7 @@ case 'listFoldersInCollection':
 ```
 
 Output:
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.37.10%20PM.png)
 
 ```
 case 'listFoldersinFolder':
@@ -908,7 +912,7 @@ case 'listFoldersinFolder':
 ```
 
 Output:
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.37.29%20PM.png)
 
 ```
 case 'listItemsInFolder':
@@ -919,7 +923,7 @@ case 'listItemsInFolder':
 ```
 
 Output:
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2012.37.43%20PM.png)
 
 ------------------------------------------
 
