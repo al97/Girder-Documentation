@@ -197,8 +197,7 @@ for sld in slidesTagged:
 
 get the count for all the possible classes (permuation of tag values). No output, used for the next block of code.
 
-![alt text]()
-
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.34.44%20AM.png)
 
 ```
 data = np.hstack((np.array([range(len(classes))]).T, np.array(classes), np.array([counts]).T))
@@ -209,7 +208,7 @@ display(HTML(df.to_html(index=False)))
 ```
 use pandas to display the results of number of slides for each class, works as intended
 
-![alt text]()
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.34.50%20AM.png)
 --------------------------------------------------------------------------------
 
 
