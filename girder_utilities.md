@@ -447,14 +447,15 @@ for sld in gc.listItem(sourceFldID):
         sld['meta']['tags']['AirBubble'] == "Yes" and sld['meta']['tags']['Blood'] == "Yes":
         airbld_yes_slides_lbd.append(sld)
 
-         for sld in airbld_yes_slides_lbd:
+        for sld in airbld_yes_slides_lbd:
              print (sld['_id'])
 
 len(airbld_yes_slides_lbd)
 ```
 
 get all the slides that have the AirBubble and  Blood set to Yes, aka slides have AirBubble and Blood
-works
+works - prints out all the slides names and then the number of them.
+![alt text]()
 
 
 ```
@@ -472,7 +473,7 @@ len(airink_yes_slides_lbd)
 
 get all the slides that have the AirBubble and  Ink set to Yes , aka slides have AirBubble and Ink
 working
-
+![alt text]()
 
 
 ```
@@ -490,6 +491,7 @@ len(bldink_yes_slides_lbd)
 
 get all the slides that have the Blood and  Ink set to Yes , aka slides have Blood and Ink
 working
+![alt text]()
 
 
 ```
@@ -508,6 +510,7 @@ len(all_yes_slides_lbd)
 
 get all the slides that all three markings
 working
+![alt text]()
 
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
@@ -524,7 +527,7 @@ len(all_no_slides_lbd)
 ```
 
 get all the slides that have none of the three markings
-
+![alt text]()
 
 -------------------------------------------------------------
   girder_utils - Girder Utilities
