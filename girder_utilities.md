@@ -95,11 +95,9 @@ for sld in gc.getResource('resource/' + rajsFldId + '/items?type=folder&limit=10
         count+=1
 print count
 ```
-Counts the slide duplicates, works as intended:
+Counts the slide duplicates, works as intended, but output simply indicates how many copies there are.
+![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.28.00%20AM.png)
 
-
-delete the duplicated slides
-works as intended
 
 ```
 rajsFldId = '5ae351e792ca9a0020d95e50'
@@ -112,6 +110,11 @@ for sld in gc.getResource('resource/' + rajsFldId + '/items?type=folder&limit=10
 
 print count
 ```
+delete the duplicated slides, but only indicates number of slides deleted.
+works as intended
+![alt text]()
+
+
   count total number of slides in the folder
   works as intended
 ```
