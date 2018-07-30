@@ -23,7 +23,7 @@ To check that you've been logged in, there is no confirmation if correct:
 Only Error if incorrect:
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.49.12%20PM.png)
 
-
+--------------------------------------------------------------
 ```
 import sys
 def recurseGetItems(client, folderID, parentType='folder'):
@@ -45,7 +45,7 @@ Result: does nothing, copy and pasted in Jupyter Notebooks but no output whatsoe
 
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.15.52%20PM.png)
 
-
+--------------------------------------------------------------
 ```
 class LinePrinter():
     """
@@ -60,7 +60,7 @@ Result: it's a function that'll be used throughout the code. So it does nothing 
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-25%20at%203.54.12%20PM.png)
 
 
-
+--------------------------------------------------------------
 ```
 rajsFldId = '5b046b8192ca9a001abb1c66'
 gbmFldId = '59f7697092ca9a001734c565'
@@ -86,7 +86,7 @@ Copies all slides in main and all its subfolders, source:gbmFldID, dest:rajsFldI
 works as intended - output reflects its copying and pasting. (1) at the end of the file
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.22.57%20AM.png)
 
-
+--------------------------------------------------------------
 ```
 rajsFldId = '5ae351e792ca9a0020d95e50'
 count =0
@@ -99,7 +99,7 @@ print count
 Counts the slide duplicates, works as intended, but output simply indicates how many copies there are.
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.28.00%20AM.png)
 
-
+--------------------------------------------------------------
 ```
 rajsFldId = '5ae351e792ca9a0020d95e50'
 
@@ -116,7 +116,7 @@ works as intended
 
 ![alt text](https://github.com/al97/Girder-Documentation/blob/master/Screen%20Shot%202018-07-30%20at%2011.29.31%20AM.png)
 
-
+--------------------------------------------------------------
 ```
 rajsFldId = '5ae351e792ca9a0020d95e50'
 count =0
@@ -225,7 +225,7 @@ import sys, os
 from IPython.display import Image
 import urllib
 
-  dsaGC = gc.GirderClient(apiUrl="http://adrc.digitalslidearchive.emory.edu:8080/api/v1")
+dsaGC = gc.GirderClient(apiUrl="http://adrc.digitalslidearchive.emory.edu:8080/api/v1")
 
 class LinePrinter():
     """
@@ -252,6 +252,10 @@ for slide in gc.listItem(folderID):
     path = "/media/raj/Raj1_5/wsi_directory/"
     t = saveSVSslide(slide, path)
 ```
+
+Output:
+![alt text]()
+
 ---------------------------------------------
 labeled images download
 
@@ -262,7 +266,6 @@ gc = girder_client.GirderClient(apiUrl=API_URL)
 gc.authenticate(interactive=True)
 ```
 
-get all the slides that have the label flag, aka they have been marked up with ground truth
 ```
 from pprint import pprint
 sourceFldID = '5ae351e792ca9a0020d95e50'
@@ -275,7 +278,10 @@ for sld in gc.listItem(sourceFldID):
         slides_lbd.append(sld)
 ```
 
-get all the slides that have the AirBubble set to Yes, aka slides have AirBubble
+get all the slides that have the label flag, aka they have been marked up with ground truth. No output for this one, used for next blocks of code
+![alt text]()
+
+
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 air_yes_slides_lbd = []
@@ -289,7 +295,10 @@ for sld in gc.listItem(sourceFldID):
 len(air_yes_slides_lbd)
 ```
 
-get all the slides that have the AirBubble set to No, aka slides have no AirBubble
+get all the slides that have the AirBubble set to Yes, aka slides have AirBubble
+![alt text]()
+
+
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 air_no_slides_lbd = []
@@ -303,8 +312,9 @@ for sld in gc.listItem(sourceFldID):
 len(air_no_slides_lbd)
 ```
 
-get all the slides that have the Blood set to Yes, aka slides have Blood
-working
+get all the slides that have the AirBubble set to No, aka slides have no AirBubble
+
+
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 bld_yes_slides_lbd = []
@@ -317,9 +327,11 @@ for sld in gc.listItem(sourceFldID):
 
 len(bld_yes_slides_lbd)
 ```
+get all the slides that have the Blood set to Yes, aka slides have Blood
+working
 
- WORKING
-  get all the slides that have the Blood set to No, aka slides have no Blood
+
+
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 bld_no_slides_lbd = []
@@ -333,8 +345,8 @@ for sld in gc.listItem(sourceFldID):
 len(bld_no_slides_lbd)
 ```
 
-working
-get all the slides that have the Ink set to Yes, aka slides have Ink
+get all the slides that have the Blood set to No, aka slides have no Blood
+
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 ink_yes_slides_lbd = []
@@ -348,8 +360,10 @@ for sld in gc.listItem(sourceFldID):
 len(ink_yes_slides_lbd)
 ```
 
-get all the slides that have the Ink set to No, aka slides have no Ink  
 working
+get all the slides that have the Ink set to Yes, aka slides have Ink
+
+
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 ink_no_slides_lbd = []
@@ -363,8 +377,10 @@ for sld in gc.listItem(sourceFldID):
 len(ink_no_slides_lbd)
 ```
 
-get all the slides that have the Sharpie set to Yes, aka slides have Sharpie
-there are no slides marked as Sharpie 0 - working
+get all the slides that have the Ink set to No, aka slides have no Ink  
+working
+
+
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 sha_yes_slides_lbd = []
@@ -378,8 +394,10 @@ for sld in gc.listItem(sourceFldID):
 len(sha_yes_slides_lbd)
 ```
 
-get all the slides that have the Sharpie set to No, aka slides have no Sharpie
-0- working
+get all the slides that have the Sharpie set to Yes, aka slides have Sharpie
+there are no slides marked as Sharpie 0 - working
+
+
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 sha_no_slides_lbd = []
@@ -393,6 +411,9 @@ for sld in gc.listItem(sourceFldID):
 len(sha_no_slides_lbd)
 ```
 
+get all the slides that have the Sharpie set to No, aka slides have no Sharpie
+0- working
+
 ```
 print("  of Sharpie   - Yes Slides: "+ str(len(sha_yes_slides_lbd)))
 print("  of Sharpie   - No  Slides: "+ str(len(sha_no_slides_lbd)))
@@ -405,8 +426,6 @@ print("  of Ink       - No  Slides: "+ str(len(ink_no_slides_lbd)))
 print("Total- No  Slides: "+ str(len(slides_lbd)))
 ```
 
-get all the slides that have the AirBubble and  Blood set to Yes, aka slides have AirBubble and Blood
-works
 
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
@@ -424,9 +443,10 @@ for sld in gc.listItem(sourceFldID):
 len(airbld_yes_slides_lbd)
 ```
 
+get all the slides that have the AirBubble and  Blood set to Yes, aka slides have AirBubble and Blood
+works
 
-get all the slides that have the AirBubble and  Ink set to Yes , aka slides have AirBubble and Ink
-working
+
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 airink_yes_slides_lbd = []
@@ -440,9 +460,11 @@ for sld in gc.listItem(sourceFldID):
 len(airink_yes_slides_lbd)
 ```
 
-
-get all the slides that have the Blood and  Ink set to Yes , aka slides have Blood and Ink
+get all the slides that have the AirBubble and  Ink set to Yes , aka slides have AirBubble and Ink
 working
+
+
+
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 bldink_yes_slides_lbd = []
@@ -456,8 +478,10 @@ for sld in gc.listItem(sourceFldID):
 len(bldink_yes_slides_lbd)
 ```
 
-get all the slides that all three markings
+get all the slides that have the Blood and  Ink set to Yes , aka slides have Blood and Ink
 working
+
+
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 all_yes_slides_lbd = []
@@ -473,6 +497,8 @@ len(all_yes_slides_lbd)
 ```
 
 get all the slides that all three markings
+working
+
 ```
 sourceFldID = '5ae351e792ca9a0020d95e50'
 all_no_slides_lbd = []
@@ -486,6 +512,9 @@ for sld in gc.listItem(sourceFldID):
 
 len(all_no_slides_lbd)
 ```
+
+get all the slides that have none of the three markings
+
 
 -------------------------------------------------------------
   girder_utils - Girder Utilities
